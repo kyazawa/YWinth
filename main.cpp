@@ -13,6 +13,10 @@
 volatile uint8_t ledstate=0;
 uint16_t cnt;
 
+/* クラスのオブジェクトの宣言 */
+Touch touch;
+SPI spi;
+
 /* タイマ割込み発生時処理
    だいたい60Hzで呼出 */
 ISR (TIMER0_COMPA_vect){
@@ -52,7 +56,7 @@ int main(void)
 	while(1){
 		
 		//decodeKey();
-		touchGet();
+		touch.touchGet();
 		_delay_ms(10);
 		
 	}
@@ -110,6 +114,7 @@ void initTimer(void)
 	
 }
 
+#if 1
 void spiInit(){
 	/* SPI設定 */
 	SPCR |= 0b01010001;
@@ -217,6 +222,8 @@ void soundInit(){
 	spiRegWrite( 0x17, 0x40 );//MS_S
 	spiRegWrite( 0x18, 0x00 );
 }
+
+#endif
 
 void setTone(){
 	uint8_t tone_data[35] ={

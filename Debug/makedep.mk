@@ -4,6 +4,8 @@
 
 main.cpp
 
+SPI.cpp
+
 Touch.cpp
 
 YMF825.cpp

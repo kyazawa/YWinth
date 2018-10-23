@@ -29,6 +29,9 @@
 #include <stdlib.h>
 #include <util/twi.h>
 
+#include "Touch.h"
+#include "SPI.h"
+
 /* 各種プロトタイプ宣言！（クラスに統合予定！） */
 
 /* AVRペリフェラル関連 */

@@ -13,9 +13,13 @@
 
 class Touch {
 	public:
-	void touchGet();	
+	void decodeKey();
+	void touchGet();
+	
+	/* コンストラクタ */
+	Touch();
+	/* デストラクタ */
+	~Touch();
 };
-
-
 
 #endif /* TOUCH_H_ */
