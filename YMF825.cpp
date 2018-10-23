@@ -8,14 +8,3 @@
 
 #include "YMF825.h"
 
-/* ノートオン */
-void noteOn(void)
-{
-	
-}
-
-/* ノートオフ */
-void noteOff(void)
-{
-	
-}

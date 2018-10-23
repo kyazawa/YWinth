@@ -9,10 +9,11 @@
 #ifndef _YMF825_H_
 #define _YMF825_H_
 
-/* ノートオン */
-void noteOn(void);
-
-/* ノートオフ */
-void noteOff(void);
+class YMF825{
+	public:
+	
+	private:
+	
+};
 
 #endif
