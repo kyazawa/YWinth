@@ -9,6 +9,8 @@
 #ifndef TOUCH_H_
 #define TOUCH_H_
 
+
+using namespace std;
 #include "YWinthCommon.h"
 
 class Touch {

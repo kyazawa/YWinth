@@ -19,7 +19,7 @@ main.d main.o: .././main.cpp .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
- .././Touch.h .././SPI.h
+ .././SPI.h .././Touch.h .././YMF825.h
 
 .././YWinthCommon.h:
 
@@ -63,6 +63,8 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
 e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h:
 
+.././SPI.h:
+
 .././Touch.h:
 
-.././SPI.h:
+.././YMF825.h:

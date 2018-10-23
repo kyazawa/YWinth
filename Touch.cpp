@@ -8,6 +8,9 @@
 
 #include "Touch.h"
 
+
+using namespace std;
+
 Touch::Touch(){
 	/* コンストラクタ */
 }

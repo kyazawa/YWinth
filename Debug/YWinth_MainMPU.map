@@ -52,7 +52,6 @@ Discarded input sections
                 0x00000000       0xc0 main.o
  .progmem.gcc_sw_table._Z8touchGetv
                 0x00000000       0x10 main.o
- .bss.spi       0x00000000        0x1 main.o
  .bss.ledstate  0x00000000        0x1 main.o
  .text          0x00000000        0x0 SPI.o
  .data          0x00000000        0x0 SPI.o
@@ -71,13 +70,13 @@ Discarded input sections
                 0x00000000       0x44 SPI.o
  .text._ZN3SPI10spiRegReadEh
                 0x00000000        0xc SPI.o
- .debug_info    0x00000000      0x4c7 SPI.o
- .debug_abbrev  0x00000000      0x1b1 SPI.o
+ .debug_info    0x00000000      0x4f1 SPI.o
+ .debug_abbrev  0x00000000      0x1c7 SPI.o
  .debug_loc     0x00000000      0x3a3 SPI.o
  .debug_aranges
                 0x00000000       0x50 SPI.o
  .debug_ranges  0x00000000       0x40 SPI.o
- .debug_line    0x00000000      0x186 SPI.o
+ .debug_line    0x00000000      0x1bd SPI.o
  .debug_str     0x00000000      0x298 SPI.o
  .comment       0x00000000       0x31 SPI.o
  .debug_frame   0x00000000       0xb8 SPI.o
@@ -91,9 +90,35 @@ Discarded input sections
  .text          0x00000000        0x0 YMF825.o
  .data          0x00000000        0x0 YMF825.o
  .bss           0x00000000        0x0 YMF825.o
- .debug_line    0x00000000        0x0 YMF825.o
- .debug_str     0x00000000      0x131 YMF825.o
+ .text._ZN6YMF8259soundInitEv
+                0x00000000       0xda YMF825.o
+ .rodata        0x00000000       0x3b YMF825.o
+ .text._ZN6YMF8257setToneEv
+                0x00000000       0x62 YMF825.o
+ .text._ZN6YMF8255keyOnEhhh
+                0x00000000       0x40 YMF825.o
+ .text._ZN6YMF8256keyOffEv
+                0x00000000        0xa YMF825.o
+ .text._ZN6YMF8255setChEv
+                0x00000000       0x2a YMF825.o
+ .text._ZN6YMF82513noteNoToScaleEj
+                0x00000000       0x30 YMF825.o
+ .text._ZN6YMF82513noteNoToBlockEj
+                0x00000000       0x1a YMF825.o
+ .text._ZN6YMF82512noteNoToFnumEj
+                0x00000000       0x7e YMF825.o
+ .text._ZN6YMF82511keyOnNoteNoEj
+                0x00000000       0x54 YMF825.o
+ .debug_info    0x00000000      0x9b0 YMF825.o
+ .debug_abbrev  0x00000000      0x217 YMF825.o
+ .debug_loc     0x00000000      0x5e2 YMF825.o
+ .debug_aranges
+                0x00000000       0x60 YMF825.o
+ .debug_ranges  0x00000000       0x50 YMF825.o
+ .debug_line    0x00000000      0x300 YMF825.o
+ .debug_str     0x00000000      0x3c4 YMF825.o
  .comment       0x00000000       0x31 YMF825.o
+ .debug_frame   0x00000000       0xe8 YMF825.o
  .text          0x00000000        0x0 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  .data          0x00000000        0x0 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
@@ -688,35 +713,35 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1eb0
+.debug_info     0x00000000     0x1df7
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x792 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
- .debug_info    0x00000792     0x124b main.o
- .debug_info    0x000019dd      0x4d3 Touch.o
+ .debug_info    0x00000792     0x1168 main.o
+ .debug_info    0x000018fa      0x4fd Touch.o
 
-.debug_abbrev   0x00000000      0xcca
+.debug_abbrev   0x00000000      0xce7
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x729 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
- .debug_abbrev  0x00000729      0x3d2 main.o
- .debug_abbrev  0x00000afb      0x1cf Touch.o
+ .debug_abbrev  0x00000729      0x3d9 main.o
+ .debug_abbrev  0x00000b02      0x1e5 Touch.o
 
-.debug_line     0x00000000      0xac3
+.debug_line     0x00000000      0xb12
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x169 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
- .debug_line    0x00000169      0x6f1 main.o
- .debug_line    0x0000085a      0x269 Touch.o
+ .debug_line    0x00000169      0x71d main.o
+ .debug_line    0x00000886      0x28c Touch.o
 
 .debug_frame    0x00000000      0x334
  *(.debug_frame)
  .debug_frame   0x00000000      0x2a8 main.o
  .debug_frame   0x000002a8       0x8c Touch.o
 
-.debug_str      0x00000000      0x8b9
+.debug_str      0x00000000      0x822
  *(.debug_str)
  .debug_str     0x00000000      0x296 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
- .debug_str     0x00000296      0x5e9 main.o
-                                0x63c (size before relaxing)
- .debug_str     0x0000087f       0x3a Touch.o
+ .debug_str     0x00000296      0x552 main.o
+                                0x5a5 (size before relaxing)
+ .debug_str     0x000007e8       0x3a Touch.o
                                 0x2b7 (size before relaxing)
 
 .debug_loc      0x00000000      0xd14

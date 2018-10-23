@@ -9,6 +9,9 @@
 #ifndef YWINTHCOMMON_H_
 #define YWINTHCOMMON_H_
 
+
+using namespace std;
+
 /* CPUクロック周波数：16MHz */
 #ifndef F_CPU
 #define F_CPU 16000000UL
@@ -29,8 +32,9 @@
 #include <stdlib.h>
 #include <util/twi.h>
 
-#include "Touch.h"
 #include "SPI.h"
+#include "Touch.h"
+#include "YMF825.h"
 
 /* 各種プロトタイプ宣言！（クラスに統合予定！） */
 

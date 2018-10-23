@@ -6,6 +6,8 @@
  * Author : yazawa
  */ 
 
+using namespace std;
+
 /* 共通ライブラリ */
 #include "YWinthCommon.h"
 
@@ -15,7 +17,6 @@ uint16_t cnt;
 
 /* クラスのオブジェクトの宣言 */
 Touch touch;
-SPI spi;
 
 /* タイマ割込み発生時処理
    だいたい60Hzで呼出 */

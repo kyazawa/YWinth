@@ -5,7 +5,10 @@
  *  Author: yazawa
  */ 
 
+
+using namespace std;
 #include "SPI.h"
+
 
 void SPI::spiInit(){
 	/* SPIê›íË */
@@ -68,7 +71,6 @@ void SPI::spiRegWrite(uint8_t addr, uint8_t data){
 	spiSend(data);
 	spiCtrlCs(DISABLE);
 }
-
 
 void SPI::spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize){
 	spiCtrlCs(ENABLE);

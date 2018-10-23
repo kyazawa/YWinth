@@ -9,10 +9,27 @@
 #ifndef _YMF825_H_
 #define _YMF825_H_
 
-class YMF825{
+using namespace std;
+
+#include "YWinthCommon.h"
+
+
+class YMF825
+{
 	public:
 	
-	private:
+	/* YMF825制御関連 */
+	void soundInit();
+	void setTone();
+	void keyOn(uint8_t fnumh, uint8_t fnuml, uint8_t vovol);
+	void keyOff(void);
+	void setCh(void);
+
+	/* ノートナンバ⇒FNUM変換関連 */
+	uint8_t noteNoToScale(uint16_t noteNo);
+	uint8_t noteNoToBlock(uint16_t noteNo);
+	uint16_t noteNoToFnum(uint16_t noteNo);
+	void keyOnNoteNo(uint16_t noteNo);
 	
 };
 
