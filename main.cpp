@@ -6,60 +6,11 @@
  * Author : yazawa
  */ 
 
-/* CPUクロック周波数：16MHz */
-#ifndef F_CPU
-#define F_CPU 16000000UL
-#endif
+/* 共通ライブラリ */
+#include "YWinthCommon.h"
 
-/* UARTボーレート：9600bps */
-#define BAUD 9600
-
-#define ENABLE  1 /* 有効 */
-#define DISABLE 0 /* 無効 */
-
-#define VERSIONCODE "V0.01"
-
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <util/delay.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <util/twi.h>
-
-void setIOMode(void);
-void ctrlLed(uint8_t state);
-void uartInit(void);
-void uartPutc(char a);
-void uartPuts(char * str);
-void initTimer(void);
-
-/* SPI通信関連 */
-void spiInit();
-void spiSend(uint8_t data);
-void spiRead();
-void spiCtrlCs(uint8_t en);
-void spiRegWrite(uint8_t addr, uint8_t data);
-void spiRegRead(uint8_t addr);
-void spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize);
-
-/* YMF825制御関連 */
-void soundInit();
-void setTone();
-void keyOn(uint8_t fnumh, uint8_t fnuml, uint8_t vovol);
-void keyOff(void);
-void setCh(void);
-
-
-uint8_t noteNoToScale(uint16_t noteNo);
-uint8_t noteNoToBlock(uint16_t noteNo);
-uint16_t noteNoToFnum(uint16_t noteNo);
-void keyOnNoteNo(uint16_t noteNo);
-
-void decodeKey();
-void touchGet();
-
+/* グローバル変数 */
 volatile uint8_t ledstate=0;
-
 uint16_t cnt;
 
 /* タイマ割込み発生時処理
@@ -104,68 +55,6 @@ int main(void)
 		touchGet();
 		_delay_ms(10);
 		
-		/*
-		keyOnNoteNo(60);
-		_delay_ms(500);
-		keyOff();
-		keyOnNoteNo(62);
-		_delay_ms(500);
-		keyOff();
-		keyOnNoteNo(64);
-		_delay_ms(500);
-		keyOff();
-		keyOnNoteNo(65);
-		_delay_ms(500);
-		keyOff();
-		keyOnNoteNo(67);
-		_delay_ms(500);
-		keyOff();
-		keyOnNoteNo(69);
-		_delay_ms(500);
-		keyOff();
-		keyOnNoteNo(71);
-		_delay_ms(500);
-		keyOff();
-		keyOnNoteNo(72);
-		_delay_ms(500);
-		keyOff();
-		*/
-		
-		/*
-		keyOnNoteNo(60);
-		_delay_ms(400);
-		keyOff();
-		keyOnNoteNo(62);
-		_delay_ms(400);
-		keyOff();
-		keyOnNoteNo(65);
-		_delay_ms(200);
-		keyOff();
-		keyOnNoteNo(67);
-		_delay_ms(400);
-		keyOff();
-		keyOnNoteNo(65);
-		_delay_ms(400);
-		keyOff();
-		keyOnNoteNo(67);
-		_delay_ms(400);
-		keyOff();
-		keyOnNoteNo(70);
-		_delay_ms(400);
-		keyOff();
-		keyOnNoteNo(72);
-		_delay_ms(200);
-		keyOff();
-		keyOnNoteNo(69);
-		_delay_ms(400);
-		keyOff();
-		keyOnNoteNo(67);
-		_delay_ms(400);
-		keyOff();
-		keyOnNoteNo(65);
-		_delay_ms(800);
-		keyOff();
-		*/
 	}
 }
 

@@ -45,6 +45,23 @@ Discarded input sections
  .progmem.gcc_sw_table._Z9decodeKeyv
                 0x00000000       0x10 main.o
  .bss.ledstate  0x00000000        0x1 main.o
+ .text          0x00000000        0x0 Touch.o
+ .data          0x00000000        0x0 Touch.o
+ .bss           0x00000000        0x0 Touch.o
+ .text._ZN5Touch8touchGetEv
+                0x00000000       0xc0 Touch.o
+ .progmem.gcc_sw_table._ZN5Touch8touchGetEv
+                0x00000000       0x10 Touch.o
+ .debug_info    0x00000000      0x2bc Touch.o
+ .debug_abbrev  0x00000000      0x17d Touch.o
+ .debug_loc     0x00000000      0x178 Touch.o
+ .debug_aranges
+                0x00000000       0x20 Touch.o
+ .debug_ranges  0x00000000       0x10 Touch.o
+ .debug_line    0x00000000      0x1ab Touch.o
+ .debug_str     0x00000000      0x24e Touch.o
+ .comment       0x00000000       0x31 Touch.o
+ .debug_frame   0x00000000       0x40 Touch.o
  .text          0x00000000        0x0 YMF825.o
  .data          0x00000000        0x0 YMF825.o
  .bss           0x00000000        0x0 YMF825.o
@@ -164,6 +181,7 @@ Linker script and memory map
 Address of section .data set to 0x800100
 LOAD E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
 LOAD main.o
+LOAD Touch.o
 LOAD YMF825.o
 START GROUP
 LOAD e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libm.a
@@ -588,20 +606,20 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x177c
+.debug_info     0x00000000     0x1768
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x792 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
- .debug_info    0x00000792      0xfea main.o
+ .debug_info    0x00000792      0xfd6 main.o
 
 .debug_abbrev   0x00000000      0xa71
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x729 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
  .debug_abbrev  0x00000729      0x348 main.o
 
-.debug_line     0x00000000      0x822
+.debug_line     0x00000000      0x815
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x169 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
- .debug_line    0x00000169      0x6b9 main.o
+ .debug_line    0x00000169      0x6ac main.o
 
 .debug_frame    0x00000000      0x288
  *(.debug_frame)

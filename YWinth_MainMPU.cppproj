@@ -175,10 +175,19 @@
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Touch.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Touch.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="YMF825.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="YMF825.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="YWinthCommon.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
