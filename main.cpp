@@ -69,6 +69,9 @@ int main(void)
 		bdata = getBreathOffsetValue();
 		sprintf(str, "lps22:%d\n", bdata);
 		uartPuts(str);
+		data = breathToVovol(bdata);
+		sprintf(str, "vovol:%d\n", data);
+		uartPuts(str);
 		
 		//decodeKey();
 		touch.touchGet();

@@ -126,3 +126,21 @@ long getBreathOffsetValue(){
 	enOfstBreath = breathRead() - offset;
 	return enOfstBreath;
 }
+
+/* オフセット済みブレス値(0～20000)⇒ベロシティ値(0~127) */
+uint8_t breathToVelocity(long brth_lv){
+	uint8_t velocity;
+	/* 範囲外の場合の処理 */
+	if(brth_lv < 0){
+		velocity = 0;
+	}else if(brth_lv > 12700){
+		velocity = 127;
+	}else{
+		velocity = brth_lv / 100;
+	}
+	return velocity;
+}
+
+uint8_t breathToVovol(long brth_lv){
+	return breathToVelocity(brth_lv)/4;
+}

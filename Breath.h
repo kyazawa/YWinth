@@ -22,9 +22,9 @@
 #define LPS22_CTR1	0x10 /* LPS22HB コントロールレジスタ */
 
 /* グローバル変数 */
-extern uint32_t offset; /* 気圧オフセット値 */
+extern uint32_t offset; /* 気圧オフセット値(グローバル変数) */
 
-/* I2C */
+/* I2C操作関連 */
 void i2cInit(void);
 void i2cStart(void);
 void i2cStop(void);
@@ -33,9 +33,16 @@ int i2cRead(int i);
 int i2cRegRead(uint8_t addr,uint8_t reg);
 void i2cRegWrite(uint8_t addr, uint8_t reg, uint8_t data);
 
+/* ブレスセンサ初期化 */
 void breathInit();
+/* ブレスセンサから気圧値読み取り */
 uint32_t breathRead();
+/* 現在気圧値をｵﾌｾｯﾄ値に設定 */
 void setBreathOffset();
+/* ｵﾌｾｯﾄ済み値を返す */
 long getBreathOffsetValue();
+/*  オフセット済みブレス値(0～20000)⇒ベロシティ値(0~127) */
+uint8_t breathToVelocity(long brth_lv);
+uint8_t breathToVovol(long brth_lv);
 
 #endif /* BREATH_H_ */
