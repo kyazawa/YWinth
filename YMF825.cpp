@@ -11,8 +11,7 @@ using namespace std;
 
 #include "YMF825.h"
 
-
-void YMF825::soundInit(){
+void soundInit(){
 	spiRegWrite( 0x1D, 0x00 ); // output power
 	spiRegWrite( 0x02, 0x0E );
 	_delay_ms(1);
@@ -41,46 +40,16 @@ void YMF825::soundInit(){
 	spiRegWrite( 0x18, 0x00 );
 }
 
-void YMF825::setTone(){
+void setTone(){
 	uint8_t tone_data[35] ={
-		0x81, // header Header: 1byte(80H + Maximum Tone Number)
-		// T_ADR 0
-		// Entire Tone Setting
-		0x01, // BO (Basic Octave)
-		0x43, // LFO,ALG
-		//Operator1 Setting
-		0x00, // SR, XOF, KSR
-		0xE7, // RR, DR
-		0xFF, // AR, SL
-		0x9D, // TL, KSL
-		0x00, // DAM(amplitude modulation depth), EAM(enable amplitude modulation), DVB(vibrato depth), EVB(enable vibrato)
-		0x10, // MULTI(magnification of frequency), DT(detune)
-		0x40, // WS(wave shape), FB(FM feedback level)
-		// Operator2 Setting
-		0x20, // SR, XOF, KSR
-		0x33, // RR, DR
-		0xE2, // AR, SL
-		0x73, // TL, KSL
-		0x00, // DAM(amplitude modulation depth), EAM(enable amplitude modulation), DVB(vibrato depth), EVB(enable vibrato)
-		0x50, // MULTI(magnification of frequency), DT(detune)
-		0x40, // WS(wave shape), FB(FM feedback level)
-		// Operator3 Setting
-		0x10, // SR, XOF, KSR
-		0x41, // RR, DR
-		0xD3, // AR, SL
-		0x5B, // TL, KSL
-		0x00, // DAM(amplitude modulation depth), EAM(enable amplitude modulation), DVB(vibrato depth), EVB(enable vibrato)
-		0x10, // MULTI(magnification of frequency), DT(detune)
-		0x41, // WS(wave shape), FB(FM feedback level)
-		// Operator4 Setting
-		0x20, // SR, XOF, KSR
-		0x63, // RR, DR
-		0xD4, // AR, SL
-		0x02, // TL, KSL
-		0x01, // DAM(amplitude modulation depth), EAM(enable amplitude modulation), DVB(vibrato depth), EVB(enable vibrato)
-		0x10, // MULTI(magnification of frequency), DT(detune)
-		0x40, // WS(wave shape), FB(FM feedback level)
-		0x80,0x03,0x81,0x80, // End(80H,03H,81H,80H)
+		0x81,//header
+		//T_ADR 0
+		0x01,0x85,
+		0x00,0x7F,0xF4,0xBB,0x00,0x10,0x40,
+		0x00,0xAF,0xA0,0x0E,0x03,0x10,0x40,
+		0x00,0x2F,0xF3,0x9B,0x00,0x20,0x41,
+		0x00,0xAF,0xA0,0x0E,0x01,0x10,0x40,
+		0x80,0x03,0x81,0x80,
 	};
 	
 	spiRegWrite( 0x08, 0xF6 );
@@ -90,7 +59,7 @@ void YMF825::setTone(){
 	spiRegBarstWrite( 0x07, &tone_data[0], 35 );
 }
 
-void YMF825::keyOn(uint8_t fnumh, uint8_t fnuml, uint8_t vovol){
+void keyOn(uint8_t fnumh, uint8_t fnuml, uint8_t vovol){
 	vovol *= 4;
 	spiRegWrite( 0x0B, 0x00 );//voice num
 	spiRegWrite( 0x0C, vovol );//vovol
@@ -99,12 +68,12 @@ void YMF825::keyOn(uint8_t fnumh, uint8_t fnuml, uint8_t vovol){
 	spiRegWrite( 0x0F, 0x40 );//keyon = 1
 }
 
-void YMF825::keyOff(void){
+void keyOff(void){
 	spiRegWrite( 0x0F, 0x00 );//keyon = 0
 }
 
 
-void YMF825::setCh(void){
+void setCh(void){
 	spiRegWrite( 0x0F, 0x30 );// keyon = 0
 	spiRegWrite( 0x10, 0x71 );// chvol
 	spiRegWrite( 0x11, 0x00 );// XVB
@@ -112,15 +81,15 @@ void YMF825::setCh(void){
 	spiRegWrite( 0x13, 0x00 );// FRAC
 }
 
-uint8_t YMF825::noteNoToScale(uint16_t noteNo){
+uint8_t noteNoToScale(uint16_t noteNo){
 	return (noteNo%12);
 }
 
-uint8_t YMF825::noteNoToBlock(uint16_t noteNo){
+uint8_t noteNoToBlock(uint16_t noteNo){
 	return ((noteNo/12)-1);
 }
 
-uint16_t YMF825::noteNoToFnum(uint16_t noteNo){
+uint16_t noteNoToFnum(uint16_t noteNo){
 	uint8_t scale;
 	uint16_t FNUM_TABLE[12] = {
 		/*  0:C  */ 357,
@@ -141,7 +110,7 @@ uint16_t YMF825::noteNoToFnum(uint16_t noteNo){
 	return FNUM_TABLE[scale];
 }
 
-void YMF825::keyOnNoteNo(uint16_t noteNo){
+void keyOnNoteNo(uint16_t noteNo){
 	uint8_t block, fnuml, fnumh;
 	uint16_t fnum;
 	fnum = noteNoToFnum(noteNo);
@@ -153,5 +122,3 @@ void YMF825::keyOnNoteNo(uint16_t noteNo){
 	
 	keyOn(fnuml, fnumh, 5);
 }
-
-

@@ -47,22 +47,6 @@ void uartPutc(char a);
 void uartPuts(char * str);
 void initTimer(void);
 
-/* SPI通信関連 */
-void spiInit();
-void spiSend(uint8_t data);
-void spiRead();
-void spiCtrlCs(uint8_t en);
-void spiRegWrite(uint8_t addr, uint8_t data);
-void spiRegRead(uint8_t addr);
-void spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize);
-
-/* YMF825制御関連 */
-void soundInit();
-void setTone();
-void keyOn(uint8_t fnumh, uint8_t fnuml, uint8_t vovol);
-void keyOff(void);
-void setCh(void);
-
 /* ノートナンバ⇒FNUM変換関連 */
 uint8_t noteNoToScale(uint16_t noteNo);
 uint8_t noteNoToBlock(uint16_t noteNo);
@@ -71,7 +55,6 @@ void keyOnNoteNo(uint16_t noteNo);
 
 void decodeKey();
 void touchGet();
-
 
 
 #endif /* YWINTHCOMMON_H_ */

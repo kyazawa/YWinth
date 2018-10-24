@@ -12,18 +12,14 @@
 using namespace std;
 #include "YWinthCommon.h"
 
-class SPI {
-	public:
-	/* SPI通信関連 */
-	void spiInit();
-	void spiSend(uint8_t data);
-	void spiRead();
-	void spiCtrlCs(uint8_t en);
-	void spiRegWrite(uint8_t addr, uint8_t data);
-	void spiRegRead(uint8_t addr);
-	void spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize);
-};
-
+/* SPI通信関連 */
+void spiInit();
+void spiSend(uint8_t data);
+void spiRead();
+void spiCtrlCs(uint8_t en);
+void spiRegWrite(uint8_t addr, uint8_t data);
+void spiRegRead(uint8_t addr);
+void spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize);
 
 
 #endif /* SPI_H_ */

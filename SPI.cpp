@@ -9,8 +9,7 @@
 using namespace std;
 #include "SPI.h"
 
-
-void SPI::spiInit(){
+void spiInit(){
 	/* SPI設定 */
 	SPCR |= 0b01010001;
 	/*	  	  |||||||+- SPR0 SPIクロック選択
@@ -35,16 +34,16 @@ void SPI::spiInit(){
 			   +-------- BTN1
 	*/
 }
-void SPI::spiSend(uint8_t data){
+void spiSend(uint8_t data){
 	SPDR = data; /* SPIデータレジスタに書き込んで送信開始 */
 	while((SPSR & (1<<SPIF)) == 0); /* 送信完了待ち */
 }
 
-void SPI::spiRead(){
+void spiRead(){
 	
 }
 
-void SPI::spiCtrlCs(uint8_t en){
+void spiCtrlCs(uint8_t en){
 	
 	if(en == DISABLE){
 		/* SPI CS=H 無効化 */
@@ -65,14 +64,15 @@ void SPI::spiCtrlCs(uint8_t en){
 	}
 }
 
-void SPI::spiRegWrite(uint8_t addr, uint8_t data){
+void spiRegWrite(uint8_t addr, uint8_t data){
 	spiCtrlCs(ENABLE);
 	spiSend(addr);
 	spiSend(data);
 	spiCtrlCs(DISABLE);
 }
 
-void SPI::spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize){
+
+void spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize){
 	spiCtrlCs(ENABLE);
 	spiSend(addr);
 	for(int i=0; i<dsize; i++){
@@ -81,7 +81,7 @@ void SPI::spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize){
 	spiCtrlCs(DISABLE);
 }
 
-void SPI::spiRegRead(uint8_t addr){
+void spiRegRead(uint8_t addr){
 	spiCtrlCs(ENABLE);
 	spiSend( 0b10000000 | addr ); /* RW=1(read) set */
 	spiRead();
