@@ -4,6 +4,8 @@
 
 Breath.cpp
 
+Finger.cpp
+
 main.cpp
 
 SPI.cpp

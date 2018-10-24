@@ -31,11 +31,13 @@ using namespace std;
 #include <stdio.h>
 #include <stdlib.h>
 #include <util/twi.h>
+#include <avr/pgmspace.h> /* 配列ROM配置に必要 */
 
 #include "SPI.h"
 #include "Touch.h"
 #include "YMF825.h"
 #include "Breath.h"
+#include "Finger.h"
 
 /* 各種プロトタイプ宣言！（クラスに統合予定！） */
 
@@ -46,15 +48,5 @@ void uartInit(void);
 void uartPutc(char a);
 void uartPuts(char * str);
 void initTimer(void);
-
-/* ノートナンバ⇒FNUM変換関連 */
-uint8_t noteNoToScale(uint16_t noteNo);
-uint8_t noteNoToBlock(uint16_t noteNo);
-uint16_t noteNoToFnum(uint16_t noteNo);
-void keyOnNoteNo(uint16_t noteNo);
-
-void decodeKey();
-void touchGet();
-
 
 #endif /* YWINTHCOMMON_H_ */

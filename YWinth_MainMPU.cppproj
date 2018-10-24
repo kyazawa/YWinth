@@ -178,6 +178,12 @@
     <Compile Include="Breath.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Finger.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Finger.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>

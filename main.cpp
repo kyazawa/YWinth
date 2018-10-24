@@ -15,8 +15,6 @@ using namespace std;
 volatile uint8_t ledstate=0;
 uint16_t cnt;
 
-/* クラスのオブジェクトの宣言 */
-Touch touch;
 
 /* タイマ割込み発生時処理
    だいたい60Hzで呼出 */
@@ -30,6 +28,8 @@ int main(void)
 	int nno=48; //ノートNo
 	uint32_t data;
 	long bdata;
+	uint8_t keyval;
+	uint16_t noteNum;
 	
 	spiInit();
 	spiCtrlCs(DISABLE);
@@ -64,6 +64,11 @@ int main(void)
 	_delay_ms(1000);
 	setBreathOffset();
 	
+	for(int i=0; i<256; i++){
+		sprintf(str, "%d %u\n", i, fingerToNoteNum(i));
+		uartPuts(str);
+	}
+	
 	while(1){
 		
 		bdata = getBreathOffsetValue();
@@ -73,11 +78,17 @@ int main(void)
 		sprintf(str, " vovol:%d\n", data);
 		//uartPuts(str);
 		
-		keyOn(0x24,0x17,data);
+		//keyOn(0x24,0x17,data);
 		//setVovol(data);
 		
 		//decodeKey();
-		//touch.touchGet();
+		keyval = touchGet();
+		noteNum = fingerToNoteNum(keyval);
+		keyOnNoteNoWithVovol(noteNum, data);
+		
+		sprintf(str, "KeyVal=%d NoteNum:%d\n", keyval, noteNum);
+		uartPuts(str);
+		
 		_delay_ms(1);
 		
 	}
@@ -136,97 +147,4 @@ void initTimer(void)
 }
 
 
-
-void decodeKey(){
-	uint8_t keyval;
-	keyval = PINA;
-	for(int i=0; i<8; i++){
-		if(((keyval>>i)&0x1) == 0){
-			switch(i){
-				case 4:
-					keyOnNoteNo(60);
-					break;
-				case 5:
-					keyOnNoteNo(62);
-					break;
-				case 6:
-					keyOnNoteNo(64);
-					break;
-				case 7:
-					keyOnNoteNo(65);
-					break;
-				case 0:
-					keyOnNoteNo(67);
-					break;
-				case 1:
-					keyOnNoteNo(69);
-					break;
-				case 2:
-					keyOnNoteNo(71);
-					break;
-				case 3:
-					keyOnNoteNo(72);
-					break;
-				
-			}
-		}
-	}
-	
-	if(keyval == 0xFF){
-		keyOff();
-	}
-}
-
-void touchGet(){
-	uint8_t keyval;
-	
-	/* L出力（放電） */
-	PORTA = 0x00;
-	DDRA = 0xFF;
-	_delay_us(5);
-	DDRA = 0x00;
-	
-	/* 充電待ち */
-	_delay_us(20);
-	
-	/* 電圧検出 */
-	keyval = PINA; /* 0:押されてる 1:押されてない */
-	
-	for(int i=0; i<8; i++){
-		if(((keyval>>i)&0x1) == 0){
-			switch(i){
-				case 4:
-				keyOnNoteNo(60);
-				break;
-				case 5:
-				keyOnNoteNo(62);
-				break;
-				case 6:
-				keyOnNoteNo(64);
-				break;
-				case 7:
-				keyOnNoteNo(65);
-				break;
-				case 0:
-				keyOnNoteNo(67);
-				break;
-				case 1:
-				keyOnNoteNo(69);
-				break;
-				case 2:
-				keyOnNoteNo(71);
-				break;
-				case 3:
-				keyOnNoteNo(72);
-				break;
-				
-			}
-		}
-	}
-	
-	if(keyval == 0xFF){
-		keyOff();
-	}
-	
-}
 

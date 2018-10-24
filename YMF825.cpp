@@ -122,3 +122,16 @@ void keyOnNoteNo(uint16_t noteNo){
 	
 	keyOn(fnuml, fnumh, 5);
 }
+
+void keyOnNoteNoWithVovol(uint16_t noteNo, uint8_t vovol){
+	uint8_t block, fnuml, fnumh;
+	uint16_t fnum;
+	fnum = noteNoToFnum(noteNo);
+	block = noteNoToBlock(noteNo);
+	
+	fnuml  = (fnum>>4) & 0b00111000;
+	fnumh  =      fnum & 0b01111111;
+	fnuml |= block;
+	
+	keyOn(fnuml, fnumh, vovol);
+}
