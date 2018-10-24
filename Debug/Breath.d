@@ -1,4 +1,4 @@
-Touch.d Touch.o: .././Touch.cpp .././Touch.h .././YWinthCommon.h \
+Breath.d Breath.o: .././Breath.cpp .././Breath.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -19,9 +19,9 @@ Touch.d Touch.o: .././Touch.cpp .././Touch.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
- .././SPI.h .././YMF825.h .././Breath.h
+ .././SPI.h .././Touch.h .././YMF825.h
 
-.././Touch.h:
+.././Breath.h:
 
 .././YWinthCommon.h:
 
@@ -67,6 +67,6 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h:
 
 .././SPI.h:
 
-.././YMF825.h:
+.././Touch.h:
 
-.././Breath.h:
+.././YMF825.h:

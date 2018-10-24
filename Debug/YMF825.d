@@ -19,7 +19,7 @@ YMF825.d YMF825.o: .././YMF825.cpp .././YMF825.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
- .././SPI.h .././Touch.h
+ .././SPI.h .././Touch.h .././Breath.h
 
 .././YMF825.h:
 
@@ -68,3 +68,5 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h:
 .././SPI.h:
 
 .././Touch.h:
+
+.././Breath.h:

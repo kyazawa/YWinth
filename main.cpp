@@ -28,6 +28,8 @@ int main(void)
 {
 	char str[100];
 	int nno=48; //ÉmÅ[ÉgNo
+	uint32_t data;
+	long bdata;
 	
 	spiInit();
 	spiCtrlCs(DISABLE);
@@ -52,13 +54,25 @@ int main(void)
     /* Replace with your application code */
 	//_delay_ms(1000);
 	initTimer();
+	breathInit();
 	sei();
+	
+	data = i2cRegRead(0b1011100, LPS22_WAMI); //whoamiì«Ç›çûÇ›
+	sprintf(str, "lps22_whoami:%x\n", data);
+	uartPuts(str);
+	
+	_delay_ms(1000);
+	setBreathOffset();
 	
 	while(1){
 		
+		bdata = getBreathOffsetValue();
+		sprintf(str, "lps22:%d\n", bdata);
+		uartPuts(str);
+		
 		//decodeKey();
 		touch.touchGet();
-		_delay_ms(10);
+		_delay_ms(50);
 		
 	}
 }
@@ -431,3 +445,4 @@ void touchGet(){
 	}
 	
 }
+

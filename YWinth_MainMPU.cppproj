@@ -172,6 +172,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Breath.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Breath.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>

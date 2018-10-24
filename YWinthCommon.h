@@ -35,6 +35,7 @@ using namespace std;
 #include "SPI.h"
 #include "Touch.h"
 #include "YMF825.h"
+#include "Breath.h"
 
 /* 各種プロトタイプ宣言！（クラスに統合予定！） */
 
@@ -70,5 +71,7 @@ void keyOnNoteNo(uint16_t noteNo);
 
 void decodeKey();
 void touchGet();
+
+
 
 #endif /* YWINTHCOMMON_H_ */
