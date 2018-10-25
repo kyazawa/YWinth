@@ -51,6 +51,10 @@ int main(void)
 	uartPuts("This is Serial Console.\n");
 	uartPuts("Please input command.\n");
 	
+	/* LCD•\¦ˆ— */
+	lcdInit();
+	lcdPrint();
+	
     /* Replace with your application code */
 	//_delay_ms(1000);
 	initTimer();
@@ -71,6 +75,7 @@ int main(void)
 	
 	while(1){
 		
+		/* ‰‰‘tˆ— */
 		bdata = getBreathOffsetValue();
 		sprintf(str, "lps22:%d", bdata);
 		//uartPuts(str);
@@ -85,7 +90,7 @@ int main(void)
 		sprintf(str, "KeyVal=%d NoteNum:%d Vovol:%d\n", keyval, noteNum, data);
 		uartPuts(str);
 		
-		_delay_ms(1);
+		_delay_ms(10);
 		
 	}
 }

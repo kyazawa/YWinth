@@ -38,6 +38,8 @@ using namespace std;
 #include "YMF825.h"
 #include "Breath.h"
 #include "Finger.h"
+#include "LCD.h"
+#include "Button.h"
 
 /* 各種プロトタイプ宣言！（クラスに統合予定！） */
 

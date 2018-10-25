@@ -23,16 +23,8 @@ void spiInit(){
 	*/
 	
 	/* SPI使用ポート設定 */
-	DDRB  |= 0b10110000; /* ↓↓↓逆じゃん */
-	/*	   	   |||||||+- SCK  SPIクロック  出力 いまこれ逆！
-			   ||||||+-- MISO SPIﾏｽﾀｲﾝ     入力
-			   |||||+--- MOSI SPIﾏｽﾀｱｳﾄ    出力
-			   ||||+---- SS   SPIｽﾚｰﾌﾞｾﾚｸﾄ 出力
-			   |||+----- BTN4
-			   ||+------ BTN3
-			   |+------- BTN2
-			   +-------- BTN1
-	*/
+	DDRB  |= 0b10110000;
+	/* MISO:入力 MOSI,SCK,SS:出力 */
 }
 void spiSend(uint8_t data){
 	SPDR = data; /* SPIデータレジスタに書き込んで送信開始 */

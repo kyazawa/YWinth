@@ -38,7 +38,9 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../Breath.cpp \
+../Button.cpp \
 ../Finger.cpp \
+../LCD.cpp \
 ../main.cpp \
 ../SPI.cpp \
 ../Touch.cpp \
@@ -53,7 +55,9 @@ ASM_SRCS +=
 
 OBJS +=  \
 Breath.o \
+Button.o \
 Finger.o \
+LCD.o \
 main.o \
 SPI.o \
 Touch.o \
@@ -61,7 +65,9 @@ YMF825.o
 
 OBJS_AS_ARGS +=  \
 Breath.o \
+Button.o \
 Finger.o \
+LCD.o \
 main.o \
 SPI.o \
 Touch.o \
@@ -69,7 +75,9 @@ YMF825.o
 
 C_DEPS +=  \
 Breath.d \
+Button.d \
 Finger.d \
+LCD.d \
 main.d \
 SPI.d \
 Touch.d \
@@ -77,7 +85,9 @@ YMF825.d
 
 C_DEPS_AS_ARGS +=  \
 Breath.d \
+Button.d \
 Finger.d \
+LCD.d \
 main.d \
 SPI.d \
 Touch.d \
@@ -104,7 +114,21 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
+./Button.o: .././Button.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)E:\AtmelStudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega1284p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./Finger.o: .././Finger.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)E:\AtmelStudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega1284p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./LCD.o: .././LCD.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)E:\AtmelStudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega1284p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

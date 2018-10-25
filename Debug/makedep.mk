@@ -4,7 +4,11 @@
 
 Breath.cpp
 
+Button.cpp
+
 Finger.cpp
+
+LCD.cpp
 
 main.cpp
 

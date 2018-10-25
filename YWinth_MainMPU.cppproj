@@ -49,13 +49,13 @@
           <IspClock>125000</IspClock>
           <JtagDbgClock>200000</JtagDbgClock>
         </InterfaceProperties>
-        <InterfaceName>JTAG</InterfaceName>
+        <InterfaceName>ISP</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.atmelice</ToolType>
       <ToolNumber>J41800059545</ToolNumber>
       <ToolName>Atmel-ICE</ToolName>
     </com_atmel_avrdbg_tool_atmelice>
-    <avrtoolinterface>JTAG</avrtoolinterface>
+    <avrtoolinterface>ISP</avrtoolinterface>
     <avrtoolinterfaceclock>200000</avrtoolinterfaceclock>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -178,10 +178,22 @@
     <Compile Include="Breath.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Button.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Button.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Finger.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Finger.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LCD.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LCD.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">

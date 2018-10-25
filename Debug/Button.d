@@ -1,4 +1,4 @@
-Breath.d Breath.o: .././Breath.cpp .././Breath.h .././YWinthCommon.h \
+Button.d Button.o: .././Button.cpp .././Button.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -20,10 +20,10 @@ Breath.d Breath.o: .././Breath.cpp .././Breath.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
- .././SPI.h .././Touch.h .././YMF825.h .././Finger.h .././LCD.h \
- .././Button.h
+ .././SPI.h .././Touch.h .././YMF825.h .././Breath.h .././Finger.h \
+ .././LCD.h
 
-.././Breath.h:
+.././Button.h:
 
 .././YWinthCommon.h:
 
@@ -75,8 +75,8 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h
 
 .././YMF825.h:
 
+.././Breath.h:
+
 .././Finger.h:
 
 .././LCD.h:
-
-.././Button.h:
