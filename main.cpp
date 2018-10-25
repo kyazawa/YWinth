@@ -78,15 +78,11 @@ int main(void)
 		sprintf(str, " vovol:%d\n", data);
 		//uartPuts(str);
 		
-		//keyOn(0x24,0x17,data);
-		//setVovol(data);
-		
-		//decodeKey();
 		keyval = touchGet();
 		noteNum = fingerToNoteNum(keyval);
 		keyOnNoteNoWithVovol(noteNum, data);
 		
-		sprintf(str, "KeyVal=%d NoteNum:%d\n", keyval, noteNum);
+		sprintf(str, "KeyVal=%d NoteNum:%d Vovol:%d\n", keyval, noteNum, data);
 		uartPuts(str);
 		
 		_delay_ms(1);
