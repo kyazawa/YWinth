@@ -13,17 +13,38 @@ using namespace std;
 
 /* グローバル変数 */
 volatile uint8_t ledstate=0;
-uint16_t cnt;
+volatile uint8_t cnt=0;
+bool executePermission = ENABLE;
 
 
 /* タイマ割込み発生時処理
-   だいたい60Hzで呼出 */
+   約 500Hz T=2mS */
 ISR (TIMER0_COMPA_vect){
-	cnt++;
+	/* 60Hz 16mSに一度メイン処理実行 */
+	if(cnt == 3){
+		/* メイン処理実行許可発行 */
+		executePermission = ENABLE; /* 実行許可の開放はメイン処理で行う */
+		cnt = 0;
+	}else{
+		cnt++;
+	}
+	
+	/* チャタリング除去処理
+	   8mS一致でボタン値確定 */
+	
+	#if 0
+	buttonSampling();		/* 1.サンプリング */
+	buttonAveraging();		/* 2.平均化 */
+	buttonPressDetect();	/* 3.押下検知 */
+	#endif
+	
+	/* ボタン押下値へのアクセスは通常処理内で行う */
 }
 
+/* メイン処理 */
 int main(void)
 {
+	/* メイン処理：初期化部分 */
 	char str[100];
 	int nno=48; //ノートNo
 	uint32_t data;
@@ -59,6 +80,8 @@ int main(void)
 	//_delay_ms(1000);
 	initTimer();
 	breathInit();
+	
+	cnt = 0;
 	sei();
 	
 	data = i2cRegRead(0b1011100, LPS22_WAMI); //whoami読み込み
@@ -73,24 +96,33 @@ int main(void)
 		uartPuts(str);
 	}
 	
+	
+	/* メイン処理：ループ部分 */
+	/* タイマにて16mS周期で実行許可発行 */
 	while(1){
 		
-		/* 演奏処理 */
-		bdata = getBreathOffsetValue();
-		sprintf(str, "lps22:%d", bdata);
-		//uartPuts(str);
-		data = breathToVovol(bdata);
-		sprintf(str, " vovol:%d\n", data);
-		//uartPuts(str);
+		/* 実行許可確認し実行可能なら実行 */
+		if(executePermission == ENABLE){
 		
-		keyval = touchGet();
-		noteNum = fingerToNoteNum(keyval);
-		keyOnNoteNoWithVovol(noteNum, data);
+			/* 演奏処理 */
+			bdata = getBreathOffsetValue();
+			sprintf(str, "lps22:%d", bdata);
+			//uartPuts(str);
+			data = breathToVovol(bdata);
+			sprintf(str, " vovol:%d\n", data);
+			//uartPuts(str);
 		
-		sprintf(str, "KeyVal=%d NoteNum:%d Vovol:%d\n", keyval, noteNum, data);
-		uartPuts(str);
+			keyval = touchGet();
+			noteNum = fingerToNoteNum(keyval);
+			keyOnNoteNoWithVovol(noteNum, data);
 		
-		_delay_ms(10);
+			sprintf(str, "KeyVal=%d NoteNum:%d Vovol:%d\n", keyval, noteNum, data);
+			//uartPuts(str);
+			
+			/* 実行許可解放 */
+			executePermission = DISABLE;
+		
+		}
 		
 	}
 }
@@ -139,7 +171,8 @@ void initTimer(void)
 					タイマ出力 61.04Hz T=16.384mS
 	*/
 	
-	OCR0A = 255; /* コンペア対象(255の場合 標準動作と同じ) */
+	OCR0A = 32; /* コンペア対象(255の場合 標準動作と同じ) */
+	/* 約2mS周期 */
 	
 	TIMSK0 = 0b00000010; /* タイマ割込マスクレジスタ */
 	/*               +- OCIE0A ﾀｲﾏ ｱｳﾄﾌﾟｯﾄｺﾝﾍﾟｱﾏｯﾁA割込有効

@@ -65,5 +65,18 @@ void buttonPressDetect(){
 	result  = buttonDefValue ^ buttonDefPrevValue; /* ビット変化検出(xor) */
 	result  &= (~buttonDefValue); /* 押下中検出 */
 	
-	buttonPressed |= result; /* 押されたボタンのビットを立てる・解除は自分で下げること */
+	buttonPressed |= result; /* 押されたボタンのビットを立てる */
+}
+
+/* ボタン値からコマンド取得・複数押された場合は低位ビットから処理 */
+uint8_t buttonGetCommand(){
+	uint8_t i;
+	for(i=0; i<6; i++){
+		if( ( (buttonPressed>>i)&0x01 )==0x01 ){
+			buttonPressed &= ~(1<<i); /* 押下されてるボタンのビットを下げる */
+			return (i+1); /* 押下されてるボタン番号を返す */
+		}
+	}
+	
+	return 0; /* 押下なし */
 }
