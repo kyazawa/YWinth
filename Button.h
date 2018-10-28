@@ -12,14 +12,14 @@
 #include "YWinthCommon.h"
 
 /* BTN1~4 : PORTB */
-#define BTN1 PB0
-#define BTN2 PB1
-#define BTN3 PB2
-#define BTN4 PB3
+#define BTN1 0
+#define BTN2 1
+#define BTN3 2
+#define BTN4 3
 
 /* BTN5~6: PORTC */
-#define BTN5 PC6
-#define BTN6 PC7
+#define BTN5 6
+#define BTN6 7
 
 /* ボタンサンプリング値（6ボタン × 8回） */
 extern uint8_t buttonSampleValue[6];
@@ -48,5 +48,8 @@ void buttonAveraging();
 
 /* ボタン押下検出 新たに押されたボタンのビットを立てる */
 void buttonPressDetect();
+
+
+uint8_t buttonGetCommand();
 
 #endif /* BUTTON_H_ */

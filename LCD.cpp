@@ -10,11 +10,20 @@
 /* LCDコマンド送信 */
 void lcdSendCmd(uint8_t cmd){
 	i2cRegWrite(LCD_ADDR, 0x00, cmd);
+	_delay_us(LCD_WAIT);
 }
 
 /* LCD文字送信 */
 void lcdSendData(uint8_t data){
 	i2cRegWrite(LCD_ADDR, 0x40, data);
+	_delay_us(30);
+}
+
+void lcdSetCursor(int x, int y){
+	y *= 0x40;
+	y += x;
+	y |= 0b10000000;
+	lcdSendCmd(y);
 }
 
 /* LCD初期化
@@ -34,11 +43,11 @@ void lcdInit(){
 	_delay_us(LCD_WAIT);
 	
 	/* Contrast Set */
-	lcdSendCmd(0x73);
+	lcdSendCmd(0b01111111);
 	_delay_us(LCD_WAIT);
 	
 	/* POWER/ICON/Contrast Control */
-	lcdSendCmd(0x56);
+	lcdSendCmd(0b01010100);
 	_delay_us(LCD_WAIT);
 	
 	/* Follower Control */
@@ -56,7 +65,7 @@ void lcdInit(){
 	
 	/* Display ON/OFF Control */
 	lcdSendCmd(0x0C);
-	_delay_us(LCD_WAIT);
+	_delay_ms(LCD_LONG_WAIT);
 	
 	/*  Initialization end! */
 }
@@ -65,8 +74,7 @@ void lcdPutc(char ch, uint8_t posx, uint8_t posy){
 	
 }
 
-void lcdPrint(){
-	char str[]="YWinth V0.1";
+void lcdPrint(char * str){
 	int i;
 	for(i=0; str[i]!='\0'; i++){
 		lcdSendData(str[i]);

@@ -14,13 +14,13 @@ using namespace std;
 /* グローバル変数 */
 volatile uint8_t ledstate=0;
 volatile uint8_t cnt=0;
-bool executePermission = ENABLE;
+volatile bool executePermission = ENABLE;
 
 
 /* タイマ割込み発生時処理
-   約 500Hz T=2mS */
+   約 1000Hz T=1mS */
 ISR (TIMER0_COMPA_vect){
-	/* 60Hz 16mSに一度メイン処理実行 */
+	/* 120Hz 8mSに一度メイン処理実行 */
 	if(cnt == 3){
 		/* メイン処理実行許可発行 */
 		executePermission = ENABLE; /* 実行許可の開放はメイン処理で行う */
@@ -29,10 +29,11 @@ ISR (TIMER0_COMPA_vect){
 		cnt++;
 	}
 	
-	/* チャタリング除去処理
-	   8mS一致でボタン値確定 */
 	
-	#if 0
+	/* チャタリング除去処理
+	   4mS一致でボタン値確定 */
+	
+	#if 1
 	buttonSampling();		/* 1.サンプリング */
 	buttonAveraging();		/* 2.平均化 */
 	buttonPressDetect();	/* 3.押下検知 */
@@ -51,11 +52,14 @@ int main(void)
 	long bdata;
 	uint8_t keyval;
 	uint16_t noteNum;
+	char transpose=12;
+	uint8_t btn, btncmd;
 	
 	spiInit();
 	spiCtrlCs(DISABLE);
 	
 	setIOMode();
+	buttonInit();
 	uartInit();
 	
 	_delay_ms(100);
@@ -65,6 +69,7 @@ int main(void)
 	setCh();
 	
 	_delay_ms(100);
+	
 	sprintf(str, "***      YWinth Serial Console      ***\nFirmware version: %s\n", VERSIONCODE);
 	uartPuts(str);
 	uartPuts("4 Operator FM Sound Wind Synthesizer.\n");
@@ -74,15 +79,21 @@ int main(void)
 	
 	/* LCD表示処理 */
 	lcdInit();
-	lcdPrint();
+	_delay_ms(100);
+	lcdPrint("YWinth");
+	_delay_ms(20);
+	lcdSetCursor(0,1);
+	_delay_ms(20);
+	lcdPrint("Initializing.");
 	
     /* Replace with your application code */
 	//_delay_ms(1000);
+	
 	initTimer();
 	breathInit();
 	
 	cnt = 0;
-	sei();
+	
 	
 	data = i2cRegRead(0b1011100, LPS22_WAMI); //whoami読み込み
 	sprintf(str, "lps22_whoami:%x\n", data);
@@ -96,13 +107,19 @@ int main(void)
 		uartPuts(str);
 	}
 	
+	sei();
+	
+	lcdSetCursor(0,1);
+	_delay_ms(20);
+	lcdPrint("OK.          ");
 	
 	/* メイン処理：ループ部分 */
-	/* タイマにて16mS周期で実行許可発行 */
+	
 	while(1){
 		
+		/* タイマにて8mS周期で実行許可発行 */
 		/* 実行許可確認し実行可能なら実行 */
-		if(executePermission == ENABLE){
+		while(executePermission == DISABLE);
 		
 			/* 演奏処理 */
 			bdata = getBreathOffsetValue();
@@ -113,16 +130,22 @@ int main(void)
 			//uartPuts(str);
 		
 			keyval = touchGet();
-			noteNum = fingerToNoteNum(keyval);
+			noteNum = fingerToNoteNum(keyval) + transpose;
 			keyOnNoteNoWithVovol(noteNum, data);
 		
-			sprintf(str, "KeyVal=%d NoteNum:%d Vovol:%d\n", keyval, noteNum, data);
+			btn = buttonGet();
+			btncmd = buttonGetCommand();
+		
+			sprintf(str,"%d %d", btn, btncmd);		
+		
+			//sprintf(str, "Nn:%02d Ve:%02d", noteNum, data);
 			//uartPuts(str);
+			
+			lcdSetCursor(0,1);
+			lcdPrint(str);
 			
 			/* 実行許可解放 */
 			executePermission = DISABLE;
-		
-		}
 		
 	}
 }
@@ -171,8 +194,8 @@ void initTimer(void)
 					タイマ出力 61.04Hz T=16.384mS
 	*/
 	
-	OCR0A = 32; /* コンペア対象(255の場合 標準動作と同じ) */
-	/* 約2mS周期 */
+	OCR0A = 16; /* コンペア対象(255の場合 標準動作と同じ) */
+	/* 約1mS周期 */
 	
 	TIMSK0 = 0b00000010; /* タイマ割込マスクレジスタ */
 	/*               +- OCIE0A ﾀｲﾏ ｱｳﾄﾌﾟｯﾄｺﾝﾍﾟｱﾏｯﾁA割込有効

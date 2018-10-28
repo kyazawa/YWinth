@@ -20,15 +20,19 @@ uint8_t buttonDefPrevValue = 0;
 uint8_t buttonPressed = 0;
 
 void buttonInit(){
+	/* ポート：入力設定 */
+	DDRB &= ~( (1<<BTN1)|(1<<BTN2)|(1<<BTN3)|(1<<BTN4) );
+	DDRC &= ~( (1<<BTN5)|(1<<BTN6) );
+	
 	/* 内部プルアップ有効化 */
-	PORTB = (1<<BTN1)|(1<<BTN2)|(1<<BTN3)|(1<<BTN4);
-	PORTC = (1<<BTN5)|(1<<BTN6);
+	PORTB |= (1<<BTN1)|(1<<BTN2)|(1<<BTN3)|(1<<BTN4);
+	PORTC |= (1<<BTN5)|(1<<BTN6);
 }
 
 uint8_t buttonGet(){
 	uint8_t result=0;
-	result  = PORTB&((1<<BTN1)|(1<<BTN2)|(1<<BTN3)|(1<<BTN4));
-	result |= ( PORTC&((1<<BTN5)|(1<<BTN6)) ) << 4;
+	result  = PINB&((1<<BTN1)|(1<<BTN2)|(1<<BTN3)|(1<<BTN4));
+	result |= ( PINC&((1<<BTN5)|(1<<BTN6)) ) >> 2;
 	return result;
 }
 
