@@ -25,6 +25,9 @@ void menuInit(){
 	}
 	menuSelectingItem = 0;
 	menuItemValue = &menuItemSetValues[menuSelectingItem];
+	
+	/* メニュー初回表示 */
+	menuRefreshDisplay();
 }
 
 /* メニュー表示更新 */
@@ -32,13 +35,29 @@ void menuRefreshDisplay(){
 	char line0[20]; /* 一行目 */
 	char line1[20]; /* 二行目 */
 	char itemname[20];
+	char valuename[20];
 	menuItemValue = &menuItemSetValues[menuSelectingItem];
+	uint8_t hasvaluename, vnaddr;
 	
+	hasvaluename = pgm_read_word(&MENUITEM_HAS_VALUENAME[menuSelectingItem]);
 	strcpy_P(itemname, (char*)pgm_read_word(&(MENUITEMS_TBL[menuSelectingItem])));
 	
 	/*              0123456789ABCDEF*/
 	sprintf(line0, "%s", itemname);
-	sprintf(line1, "             %3d", *menuItemValue);
+	
+	/*  ★設定値ユニーク名持たない場合 */
+	if(hasvaluename == DISABLE){
+		sprintf(line1, "             %3d", *menuItemValue);
+	}else{
+		/* ★設定値ユニーク名持っている場合 */
+		/* 設定値ユニーク名アドレス演算 */
+		vnaddr = *menuItemValue 
+				 + pgm_read_word(&MENUITEM_VALUENAME_ADDR_TBL[menuSelectingItem]) 
+				 - pgm_read_word(&MENUITEM_MIN_TBL[menuSelectingItem]);
+
+		strcpy_P(valuename, (char*)pgm_read_word(&(MENUITEM_VALUENAME_TBL[vnaddr])));
+		sprintf(line1, "         %s", valuename);
+	}
 	
 	lcdSetCursor(0,0);
 	lcdPrint(line0);
@@ -61,6 +80,9 @@ void menuMoveItem(signed char arg){
 	}
 	else if( (arg==PREV) && (menuSelectingItem==0) ){
 		menuSelectingItem = MENUITEM_MAX_NO;
+	}
+	else{
+		menuSelectingItem = 0;
 	}
 	
 	menuItemValue = &menuItemSetValues[menuSelectingItem];
@@ -89,6 +111,7 @@ void menuAdjValue(signed char arg){
 /* メニュー一回のアクティビティ */
 void menuActivity(){
 	volatile uint8_t button;
+	uint8_t changed = 1;
 	button = buttonGetCommand();
 	
 	switch(button){
@@ -113,10 +136,15 @@ void menuActivity(){
 			break;
 		case BTN_CA:
 			/* キャンセル */
+			menuMoveItem(RST);
 			break;
+		default:
+			changed = 0;
 	}
 	
-	/* メニュー表示更新 */
-	menuRefreshDisplay();
+	/* ボタン操作があればメニュー表示更新 */
+	if(changed == 1){
+		menuRefreshDisplay();
+	}
 	
 }

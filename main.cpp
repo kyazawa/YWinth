@@ -80,12 +80,11 @@ int main(void)
 	_delay_ms(100);
 	lcdPrint("YWinth");
 	_delay_ms(20);
-	lcdSetCursor(0,1);
+	lcdSetCursor(11,1);
 	_delay_ms(20);
-	lcdPrint("Initializing.");
+	lcdPrint(VERSIONCODE);
 	
 	initTimer();
-	menuInit();
 	breathInit();
 	
 	cnt = 0;
@@ -95,9 +94,10 @@ int main(void)
 	sprintf(str, "lps22_whoami:%x\n", data);
 	uartPuts(str);
 	
-	_delay_ms(200); /* ‘§ˆÀ’è‘Ò‚¿ */
+	_delay_ms(500); /* ‘§ˆÀ’è‘Ò‚¿ */
 	setBreathOffset();
 	
+	menuInit();
 	/* ‰Šú‰»Š®—¹CŠ„‚è‚İ—LŒø‰»I */
 	sei();
 	

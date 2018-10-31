@@ -11,36 +11,111 @@
 
 #include "YWinthCommon.h"
 
-#if 1 /* ↓↓↓ 作成中につき... */
 
 /* メニュー動作定義 */
 #define UP		 1
 #define DN		-1
+#define RST      0
 #define NEXT	 1
 #define PREV	-1
 #define NOCNG	 0
 
 /* メニュー項目番号最大値(メニュー項目数-1) */
 #define MENUITEM_MAX_NO 5
+#define CHR_SIZE 20
 
-/* ★ メニュー項目テーブル */
-/*								  0123456789ABCDEF */
-const char MENUITEM_0[] PROGMEM = "MasterVolume ";
-const char MENUITEM_1[] PROGMEM = "PrisetTone   ";
-const char MENUITEM_2[] PROGMEM = "Transpose    ";
-const char MENUITEM_3[] PROGMEM = "Octave       ";
-const char MENUITEM_4[] PROGMEM = "BreathLevel  ";
-const char MENUITEM_5[] PROGMEM = "FingerPattern";
 
-/* constは２回かく */
-const char* const MENUITEMS_TBL[] PROGMEM = {
-	MENUITEM_0,
-	MENUITEM_1,
-	MENUITEM_2,
-	MENUITEM_3,
-	MENUITEM_4,
-	MENUITEM_5 
+/* ★ メニュー項目名テーブル */
+const char MENUITEM_STR_TBL[MENUITEM_MAX_NO+1][CHR_SIZE] PROGMEM = {
+	"MasterVolume ",
+	"PrisetTone   ",
+	"Transpose    ",
+	"Octave       ",
+	"BreathLevel  ",
+	"Finger       "
 };
+
+const char* const MENUITEMS_TBL[] PROGMEM = {
+	MENUITEM_STR_TBL[0],
+	MENUITEM_STR_TBL[1],
+	MENUITEM_STR_TBL[2],
+	MENUITEM_STR_TBL[3],
+	MENUITEM_STR_TBL[4],
+	MENUITEM_STR_TBL[5]
+};
+
+/* ★設定値ユニーク名テーブル */
+
+/* 音色名ﾃｰﾌﾞﾙ */
+const char TONENAME_STR_TBL[4][8] PROGMEM = {
+	"SawWave",
+	"SinWave",
+	"AltoSax",
+	"  Flute"
+};
+
+/* 移調(トランスポーズ)テーブル */
+const char TRANSPOSE_STR_TBL[12][8] PROGMEM = {
+	" G   -5",
+	" Ab  -4",
+	" A   -3",
+	"[Bb] -2",
+	" B   -1",
+	"[C ]  0",
+	" Db  +1",
+	" D   +2",
+	"[Eb] +3",
+	" E   +4",
+	"[F ] +5",
+	" F#  +6"
+};
+
+/* 運指テーブル */
+const char FINGERPTN_STR_TBL[4][8] PROGMEM = {
+	" YWinth",
+	"  Flute",
+	"    Sax",
+	"DigHorn"
+};
+
+/* 設定値ユニーク名ポインタテーブル */
+const char* const MENUITEM_VALUENAME_TBL[] PROGMEM = {
+	/* PrisetTone */
+	TONENAME_STR_TBL[0], /* 0x00 */
+	TONENAME_STR_TBL[1],
+	TONENAME_STR_TBL[2],
+	TONENAME_STR_TBL[3],
+	
+	/* Transpose */
+	TRANSPOSE_STR_TBL[0], /* 0x04 */
+	TRANSPOSE_STR_TBL[1],
+	TRANSPOSE_STR_TBL[2],
+	TRANSPOSE_STR_TBL[3],
+	TRANSPOSE_STR_TBL[4],
+	TRANSPOSE_STR_TBL[5],
+	TRANSPOSE_STR_TBL[6],
+	TRANSPOSE_STR_TBL[7],
+	TRANSPOSE_STR_TBL[8],
+	TRANSPOSE_STR_TBL[9],
+	TRANSPOSE_STR_TBL[10],
+	TRANSPOSE_STR_TBL[11],
+	
+	FINGERPTN_STR_TBL[0], /* 0x10 */
+	FINGERPTN_STR_TBL[1],
+	FINGERPTN_STR_TBL[2],
+	FINGERPTN_STR_TBL[3]
+};
+
+/* 設定値ユニーク名保存位置アドレスオフセットテーブル */
+const uint8_t MENUITEM_VALUENAME_ADDR_TBL[] PROGMEM = {
+	255, /* MasterVolume */
+	0,   /* PrisetTone */
+	4,   /* Transpose */
+	255,
+	255,
+	16
+};
+
 
 /* ★ メニュー変位テーブル */
 /* めも：charが符号あるかは不定なので符号つけたいときは”signed char”とすること！ */
@@ -49,7 +124,7 @@ const char* const MENUITEMS_TBL[] PROGMEM = {
 const signed char MENUITEM_MIN_TBL[] PROGMEM = {
 	0,		/* MasterVolume */
 	0,		/* PrisetTone */
-	-12,	/* Transpose */
+	-5,	/* Transpose */
 	-4,		/* Octave */
 	0,		/* BreathLevel */
 	0		/* FingerPattern */
@@ -59,10 +134,10 @@ const signed char MENUITEM_MIN_TBL[] PROGMEM = {
 const signed char MENUITEM_MAX_TBL[] PROGMEM = {
 	31,		/* MasrerVolume */
 	3,		/* PrisetTone */
-	12,		/* Transpose */
+	6,		/* Transpose */
 	4,		/* Octave */
 	100,	/* BreathLevel*/
-	4		/* FingerPattern */
+	3		/* FingerPattern */
 };
 
 /* 初期値テーブル */
@@ -75,11 +150,12 @@ const signed char MENUITEM_DEFAULT_TBL[] PROGMEM = {
 	0		/* FingerPattern */
 };
 
-/* ★ 設定値が数値:DISABLE 設定値が名前をもつ:ENABLE */
+/* ★設定値ユニーク名保持の有無テーブル
+	 設定値が数値:DISABLE 設定値が名前をもつ:ENABLE */
 const signed char MENUITEM_HAS_VALUENAME[] PROGMEM = {
 	DISABLE,		/* MasrerVolume */
 	ENABLE,			/* PrisetTone */
-	DISABLE,		/* Transpose */
+	ENABLE,		/* Transpose */
 	DISABLE,		/* Octave */
 	DISABLE,		/* BreathLevel*/
 	ENABLE			/* FingerPattern */
@@ -87,14 +163,14 @@ const signed char MENUITEM_HAS_VALUENAME[] PROGMEM = {
 
 /* メニューイベントテーブル：値編集時の動作 */
 #if 0
-static (*MENUITEM_EVENT_TBL[])() PROGMEM{
-	changeMasterVolume,		/* MasrerVolume */
-	setPrisetTone,			/* PrisetTone */
-	setTranspose,			/* Transpose */
-	setOctave,				/* Octave */
-	setBreathLevel,			/* BreathLevel*/
-	setFingerPattern		/* FingerPattern */
-}
+void (*MENUITEM_EVENT_TBL[])() PROGMEM = {
+	NULL,		/* MasrerVolume */
+	NULL,			/* PrisetTone */
+	NULL,		/* Transpose */
+	NULL,		/* Octave */
+	NULL,		/* BreathLevel*/
+	NULL			/* FingerPattern */
+};
 #endif
 
 /* メニューイベントテーブル：OKクリック時動作 */
@@ -145,6 +221,5 @@ void menuActivity();
 /* メニュー初期化処理 */
 void menuInit();
 
-#endif
 
 #endif /* MENU_H_ */
