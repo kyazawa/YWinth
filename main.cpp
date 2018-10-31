@@ -62,14 +62,11 @@ int main(void)
 	buttonInit();
 	uartInit();
 	
-	_delay_ms(100);
-	
 	soundInit();
 	setTone();
 	setCh();
 	
-	_delay_ms(100);
-	
+	/* UARTスタートアップﾒｯｾｰｼﾞ送信 */
 	sprintf(str, "***      YWinth Serial Console      ***\nFirmware version: %s\n", VERSIONCODE);
 	uartPuts(str);
 	uartPuts("4 Operator FM Sound Wind Synthesizer.\n");
@@ -77,7 +74,8 @@ int main(void)
 	uartPuts("This is Serial Console.\n");
 	uartPuts("Please input command.\n");
 	
-	/* LCD表示処理 */
+	/* LCD表示処理 LCDは遅いので気を遣う */
+	_delay_ms(100);
 	lcdInit();
 	_delay_ms(100);
 	lcdPrint("YWinth");
@@ -85,9 +83,6 @@ int main(void)
 	lcdSetCursor(0,1);
 	_delay_ms(20);
 	lcdPrint("Initializing.");
-	
-    /* Replace with your application code */
-	//_delay_ms(1000);
 	
 	initTimer();
 	menuInit();
@@ -100,19 +95,11 @@ int main(void)
 	sprintf(str, "lps22_whoami:%x\n", data);
 	uartPuts(str);
 	
-	_delay_ms(1000);
+	_delay_ms(200); /* 息安定待ち */
 	setBreathOffset();
 	
-	for(int i=0; i<256; i++){
-		sprintf(str, "%d %u\n", i, fingerToNoteNum(i));
-		uartPuts(str);
-	}
-	
+	/* 初期化完了，割り込み有効化！ */
 	sei();
-	
-	lcdSetCursor(0,1);
-	_delay_ms(20);
-	lcdPrint("OK.          ");
 	
 	/* メイン処理：ループ部分 */
 	
@@ -135,7 +122,6 @@ int main(void)
 			keyOnNoteNoWithVovol(noteNum, data);
 		
 			btn = buttonGet();
-			//btncmd = buttonGetCommand();
 		
 			sprintf(str,"%d %d", btn, btncmd);		
 		

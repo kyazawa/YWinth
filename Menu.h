@@ -43,6 +43,7 @@ const char* const MENUITEMS_TBL[] PROGMEM = {
 };
 
 /* ★ メニュー変位テーブル */
+/* めも：charが符号あるかは不定なので符号つけたいときは”signed char”とすること！ */
 
 /* 設定可能最小値 */
 const signed char MENUITEM_MIN_TBL[] PROGMEM = {
@@ -83,6 +84,42 @@ const signed char MENUITEM_HAS_VALUENAME[] PROGMEM = {
 	DISABLE,		/* BreathLevel*/
 	ENABLE			/* FingerPattern */
 };
+
+/* メニューイベントテーブル：値編集時の動作 */
+#if 0
+static (*MENUITEM_EVENT_TBL[])() PROGMEM{
+	changeMasterVolume,		/* MasrerVolume */
+	setPrisetTone,			/* PrisetTone */
+	setTranspose,			/* Transpose */
+	setOctave,				/* Octave */
+	setBreathLevel,			/* BreathLevel*/
+	setFingerPattern		/* FingerPattern */
+}
+#endif
+
+/* メニューイベントテーブル：OKクリック時動作 */
+#if 0
+static (*MENUITEM_EVENT_TBL[])() PROGMEM{
+	changeMasterVolume,		/* MasrerVolume */
+	setPrisetTone,			/* PrisetTone */
+	setTranspose,			/* Transpose */
+	setOctave,				/* Octave */
+	setBreathLevel,			/* BreathLevel*/
+	setFingerPattern		/* FingerPattern */
+}
+#endif
+
+/* メニューイベントテーブル：ｷｬﾝｾﾙクリック時動作 */
+#if 0
+static (*MENUITEM_EVENT_TBL[])() PROGMEM{
+	changeMasterVolume,		/* MasrerVolume */
+	setPrisetTone,			/* PrisetTone */
+	setTranspose,			/* Transpose */
+	setOctave,				/* Octave */
+	setBreathLevel,			/* BreathLevel*/
+	setFingerPattern		/* FingerPattern */
+}
+#endif
 
 /* 現在選択中メニュー項目 */
 extern uint8_t menuSelectingItem;
