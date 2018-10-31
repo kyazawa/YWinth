@@ -274,9 +274,10 @@ const uint16_t FINGER_TBL[] PROGMEM = {
 };
 
 
-
+extern signed char BOctave;
 
 
 uint16_t fingerToNoteNum(uint8_t finger);
+void setBOctave(signed char oct);
 
 #endif /* FINGER_H_ */

@@ -21,7 +21,7 @@ Button.d Button.o: .././Button.cpp .././Button.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  .././SPI.h .././Touch.h .././YMF825.h .././Breath.h .././Finger.h \
- .././LCD.h .././Menu.h
+ .././LCD.h .././Menu.h .././Midi.h
 
 .././Button.h:
 
@@ -82,3 +82,5 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h
 .././LCD.h:
 
 .././Menu.h:
+
+.././Midi.h:

@@ -205,6 +205,12 @@
     <Compile Include="Menu.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Midi.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Midi.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="SPI.cpp">
       <SubType>compile</SubType>
     </Compile>

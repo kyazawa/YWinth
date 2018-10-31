@@ -118,6 +118,7 @@ void menuActivity(){
 		case BTN_UP:
 			/* ﾃﾞｰﾀｴﾝﾄﾘ+ 処理 */
 			menuAdjValue(UP);
+			
 			break;
 		case BTN_DN:
 			/* ﾃﾞｰﾀｴﾝﾄﾘ- 処理 */
@@ -142,9 +143,19 @@ void menuActivity(){
 			changed = 0;
 	}
 	
-	/* ボタン操作があればメニュー表示更新 */
+	/* ボタン操作があれば設定反映・メニュー表示更新 */
 	if(changed == 1){
+		/* メニューイベント実行 */
+		if( (*MENUITEM_EVENT_TBL[menuSelectingItem]) != NULL){
+			(*MENUITEM_EVENT_TBL[menuSelectingItem])();
+		}
+		/* メニュー表示更新 */
 		menuRefreshDisplay();
 	}
 	
+}
+
+/* ★ メニューイベント */
+void ev_setOctave(){
+	setBOctave(*menuItemValue);
 }

@@ -21,7 +21,7 @@ Touch.d Touch.o: .././Touch.cpp .././Touch.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  .././SPI.h .././YMF825.h .././Breath.h .././Finger.h .././LCD.h \
- .././Button.h .././Menu.h
+ .././Button.h .././Menu.h .././Midi.h
 
 .././Touch.h:
 
@@ -82,3 +82,5 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h
 .././Button.h:
 
 .././Menu.h:
+
+.././Midi.h:

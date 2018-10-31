@@ -24,6 +24,8 @@
 #define MENUITEM_MAX_NO 5
 #define CHR_SIZE 20
 
+/* ボタンクリック時イベントポインタ */
+typedef void (*EVENT)();
 
 /* ★ メニュー項目名テーブル */
 const char MENUITEM_STR_TBL[MENUITEM_MAX_NO+1][CHR_SIZE] PROGMEM = {
@@ -161,13 +163,17 @@ const signed char MENUITEM_HAS_VALUENAME[] PROGMEM = {
 	ENABLE			/* FingerPattern */
 };
 
+
+/* メニューイベント */
+void ev_setOctave();
+
 /* メニューイベントテーブル：値編集時の動作 */
-#if 0
-void (*MENUITEM_EVENT_TBL[])() PROGMEM = {
+#if 1
+const EVENT MENUITEM_EVENT_TBL[] = {
 	NULL,		/* MasrerVolume */
 	NULL,			/* PrisetTone */
 	NULL,		/* Transpose */
-	NULL,		/* Octave */
+	ev_setOctave,		/* Octave */
 	NULL,		/* BreathLevel*/
 	NULL			/* FingerPattern */
 };

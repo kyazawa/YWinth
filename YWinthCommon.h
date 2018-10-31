@@ -41,6 +41,8 @@ using namespace std;
 #include "LCD.h"
 #include "Button.h"
 #include "Menu.h"
+#include "Midi.h"
+
 
 /* 各種プロトタイプ宣言！（クラスに統合予定！） */
 

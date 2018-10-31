@@ -47,13 +47,11 @@ int main(void)
 {
 	/* メイン処理：初期化部分 */
 	char str[100];
-	int nno=48; //ノートNo
 	uint32_t data;
 	long bdata;
 	uint8_t keyval;
 	uint16_t noteNum;
 	char transpose=12;
-	uint8_t btn, btncmd;
 	
 	spiInit();
 	spiCtrlCs(DISABLE);
@@ -109,32 +107,24 @@ int main(void)
 		/* 実行許可確認し実行可能なら実行 */
 		while(executePermission == DISABLE);
 		
-			/* 演奏処理 */
-			bdata = getBreathOffsetValue();
-			sprintf(str, "lps22:%d", bdata);
-			//uartPuts(str);
-			data = breathToVovol(bdata);
-			sprintf(str, " vovol:%d\n", data);
-			//uartPuts(str);
-		
-			keyval = touchGet();
-			noteNum = fingerToNoteNum(keyval) + transpose;
-			keyOnNoteNoWithVovol(noteNum, data);
-		
-			btn = buttonGet();
-		
-			sprintf(str,"%d %d", btn, btncmd);		
-		
-			//sprintf(str, "Nn:%02d Ve:%02d", noteNum, data);
-			//uartPuts(str);
+		/* ★★★ 演奏処理 ★★★ */
 			
-			//lcdSetCursor(0,1);
-			//lcdPrint(str);
+		/* ブレスデータ取得 ⇒ ベロシティ生成 */
+		bdata = getBreathOffsetValue();
+		data = breathToVovol(bdata);
+		
+		/* タッチセンサデータ取得 ⇒ ノートナンバー生成 */
+		keyval = touchGet();
+		noteNum = fingerToNoteNum(keyval);
 			
-			menuActivity();
+		/* ノートナンバー＋ベロシティ ⇒ キーオン */
+		keyOnNoteNoWithVovol(noteNum, data);	
 			
-			/* 実行許可解放 */
-			executePermission = DISABLE;
+		/* メニュー処理 */
+		menuActivity();
+			
+		/* 実行許可解放 */
+		executePermission = DISABLE;
 		
 	}
 }

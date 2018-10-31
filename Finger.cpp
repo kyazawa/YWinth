@@ -7,6 +7,8 @@
 
 #include "Finger.h"
 
+signed char BOctave = 0;
+
 uint16_t fingerToNoteNum(uint8_t finger){
 	uint16_t noteNum;
 	//noteNum = FINGER_TBL[fingerI];
@@ -17,5 +19,12 @@ uint16_t fingerToNoteNum(uint8_t finger){
 		noteNum = pgm_read_word(&FINGER_TBL[0]); /* 未定義の運指の場合は C# を出す */
 	}
 	
+	/* ノートナンバーに基準オクターブ反映 */
+	noteNum += (BOctave*12);
+	
 	return noteNum;
+}
+
+void setBOctave(signed char oct){
+	BOctave = oct;
 }

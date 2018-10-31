@@ -14,6 +14,8 @@ main.cpp
 
 Menu.cpp
 
+Midi.cpp
+
 SPI.cpp
 
 Touch.cpp
