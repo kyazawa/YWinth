@@ -12,6 +12,8 @@ LCD.cpp
 
 main.cpp
 
+Menu.cpp
+
 SPI.cpp
 
 Touch.cpp

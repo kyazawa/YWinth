@@ -21,7 +21,7 @@ Breath.d Breath.o: .././Breath.cpp .././Breath.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  .././SPI.h .././Touch.h .././YMF825.h .././Finger.h .././LCD.h \
- .././Button.h
+ .././Button.h .././Menu.h
 
 .././Breath.h:
 
@@ -80,3 +80,5 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h
 .././LCD.h:
 
 .././Button.h:
+
+.././Menu.h:

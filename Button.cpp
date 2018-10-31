@@ -11,10 +11,10 @@
 uint8_t buttonSampleValue[6] = {0};
 
 /* ボタン今回確定値 */
-uint8_t buttonDefValue = 0;
+uint8_t buttonDefValue = 0xff;
 
 /* ボタン前回確定値 */
-uint8_t buttonDefPrevValue = 0;
+uint8_t buttonDefPrevValue = 0xff;
 
 /* ボタン押下検出(前回未押下⇒今回押下) */
 uint8_t buttonPressed = 0;
@@ -36,6 +36,7 @@ uint8_t buttonGet(){
 	return result;
 }
 
+/* ボタン値サンプリング（一回分） */
 void buttonSampling(){
 	uint8_t braw,i;
 	braw = buttonGet(); /* ボタン生値(負論理) */
@@ -46,17 +47,16 @@ void buttonSampling(){
 	}
 }
 
+/* ボタン値平均化処理 */
 void buttonAveraging(){
 	uint8_t i;
 	/* ボタン前回確定値を保存 */
 	buttonDefPrevValue = buttonDefValue;
-	
 	for(i=0; i<6; i++){ /* ボタン個数分 */
 		if( (buttonSampleValue[i]&0x0F) == 0x0F ){ /* 4回一致で値確定 */
 			/* ボタン値：Ｈ確定 */
 			buttonDefValue |= (1<<i);
-			
-		}else if( (buttonSampleValue[i]&0x0F) == 0x00 ){
+		}else if( (buttonSampleValue[i]&0x0F) == 0x00 ){ /* 4回一致で値確定 */
 			/* ボタン値：Ｌ確定 */
 			buttonDefValue &= ~(1<<i);
 		}

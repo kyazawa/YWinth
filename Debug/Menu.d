@@ -1,4 +1,4 @@
-LCD.d LCD.o: .././LCD.cpp .././LCD.h .././YWinthCommon.h \
+Menu.d Menu.o: .././Menu.cpp .././Menu.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -21,9 +21,9 @@ LCD.d LCD.o: .././LCD.cpp .././LCD.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  .././SPI.h .././Touch.h .././YMF825.h .././Breath.h .././Finger.h \
- .././Button.h .././Menu.h
+ .././LCD.h .././Button.h
 
-.././LCD.h:
+.././Menu.h:
 
 .././YWinthCommon.h:
 
@@ -79,6 +79,6 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h
 
 .././Finger.h:
 
-.././Button.h:
+.././LCD.h:
 
-.././Menu.h:
+.././Button.h:

@@ -90,6 +90,7 @@ int main(void)
 	//_delay_ms(1000);
 	
 	initTimer();
+	menuInit();
 	breathInit();
 	
 	cnt = 0;
@@ -134,15 +135,17 @@ int main(void)
 			keyOnNoteNoWithVovol(noteNum, data);
 		
 			btn = buttonGet();
-			btncmd = buttonGetCommand();
+			//btncmd = buttonGetCommand();
 		
 			sprintf(str,"%d %d", btn, btncmd);		
 		
 			//sprintf(str, "Nn:%02d Ve:%02d", noteNum, data);
 			//uartPuts(str);
 			
-			lcdSetCursor(0,1);
-			lcdPrint(str);
+			//lcdSetCursor(0,1);
+			//lcdPrint(str);
+			
+			menuActivity();
 			
 			/* é¿çsãñâ¬âï˙ */
 			executePermission = DISABLE;

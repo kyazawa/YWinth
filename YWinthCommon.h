@@ -40,6 +40,7 @@ using namespace std;
 #include "Finger.h"
 #include "LCD.h"
 #include "Button.h"
+#include "Menu.h"
 
 /* 各種プロトタイプ宣言！（クラスに統合予定！） */
 

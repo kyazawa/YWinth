@@ -21,6 +21,14 @@
 #define BTN5 6
 #define BTN6 7
 
+/* ボタン名定義 */
+#define BTN_UP 1 /* ﾃﾞｰﾀｴﾝﾄﾘ＋ */
+#define BTN_DN 4 /* ﾃﾞｰﾀｴﾝﾄﾘ-  */
+#define BTN_PR 2 /* 前項目 */
+#define BTN_NX 3 /* 次項目 */
+#define BTN_OK 5 /* OK */
+#define BTN_CA 6 /* キャンセル */
+
 /* ボタンサンプリング値（6ボタン × 8回） */
 extern uint8_t buttonSampleValue[6];
 
@@ -51,5 +59,6 @@ void buttonPressDetect();
 
 
 uint8_t buttonGetCommand();
+
 
 #endif /* BUTTON_H_ */

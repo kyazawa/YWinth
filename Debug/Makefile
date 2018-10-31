@@ -42,6 +42,7 @@ C_SRCS +=  \
 ../Finger.cpp \
 ../LCD.cpp \
 ../main.cpp \
+../Menu.cpp \
 ../SPI.cpp \
 ../Touch.cpp \
 ../YMF825.cpp
@@ -59,6 +60,7 @@ Button.o \
 Finger.o \
 LCD.o \
 main.o \
+Menu.o \
 SPI.o \
 Touch.o \
 YMF825.o
@@ -69,6 +71,7 @@ Button.o \
 Finger.o \
 LCD.o \
 main.o \
+Menu.o \
 SPI.o \
 Touch.o \
 YMF825.o
@@ -79,6 +82,7 @@ Button.d \
 Finger.d \
 LCD.d \
 main.d \
+Menu.d \
 SPI.d \
 Touch.d \
 YMF825.d
@@ -89,6 +93,7 @@ Button.d \
 Finger.d \
 LCD.d \
 main.d \
+Menu.d \
 SPI.d \
 Touch.d \
 YMF825.d
@@ -136,6 +141,13 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./main.o: .././main.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)E:\AtmelStudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega1284p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./Menu.o: .././Menu.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)E:\AtmelStudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega1284p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
