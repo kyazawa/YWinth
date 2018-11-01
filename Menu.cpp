@@ -118,7 +118,6 @@ void menuActivity(){
 		case BTN_UP:
 			/* ÃŞ°À´İÄØ+ ˆ— */
 			menuAdjValue(UP);
-			
 			break;
 		case BTN_DN:
 			/* ÃŞ°À´İÄØ- ˆ— */

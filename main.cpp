@@ -28,18 +28,10 @@ ISR (TIMER0_COMPA_vect){
 	}else{
 		cnt++;
 	}
-	
-	
-	/* チャタリング除去処理
-	   4mS一致でボタン値確定 */
-	
-	#if 1
+	/* チャタリング除去処理 4mS一致でボタン値確定 */
 	buttonSampling();		/* 1.サンプリング */
 	buttonAveraging();		/* 2.平均化 */
 	buttonPressDetect();	/* 3.押下検知 */
-	#endif
-	
-	/* ボタン押下値へのアクセスは通常処理内で行う */
 }
 
 /* メイン処理 */
@@ -50,8 +42,9 @@ int main(void)
 	uint32_t data;
 	long bdata;
 	uint8_t keyval;
-	uint16_t noteNum;
+	uint16_t noteNum, noteNum_old=0;
 	char transpose=12;
+	uint8_t vel, vel_old=0;
 	
 	spiInit();
 	spiCtrlCs(DISABLE);
@@ -64,14 +57,21 @@ int main(void)
 	setTone();
 	setCh();
 	
-	/* UARTスタートアップﾒｯｾｰｼﾞ送信 */
+	/* UARTスタートアップﾒｯｾｰｼﾞ送信(MIDI有効の場合は送信しない) */
+#if (!MIDI_ENABLE)
 	sprintf(str, "***      YWinth Serial Console      ***\nFirmware version: %s\n", VERSIONCODE);
 	uartPuts(str);
 	uartPuts("4 Operator FM Sound Wind Synthesizer.\n");
 	uartPuts("Designed by K.Yazawa.\n");
 	uartPuts("This is Serial Console.\n");
 	uartPuts("Please input command.\n");
-	
+#endif
+
+	/* MIDI初期化処理 */
+#if MIDI_ENABLE
+	//midiInit();
+#endif
+
 	/* LCD表示処理 LCDは遅いので気を遣う */
 	_delay_ms(100);
 	lcdInit();
@@ -86,11 +86,6 @@ int main(void)
 	breathInit();
 	
 	cnt = 0;
-	
-	
-	data = i2cRegRead(0b1011100, LPS22_WAMI); //whoami読み込み
-	sprintf(str, "lps22_whoami:%x\n", data);
-	uartPuts(str);
 	
 	_delay_ms(500); /* 息安定待ち */
 	setBreathOffset();
@@ -112,14 +107,39 @@ int main(void)
 		/* ブレスデータ取得 ⇒ ベロシティ生成 */
 		bdata = getBreathOffsetValue();
 		data = breathToVovol(bdata);
+		vel = breathToVelocity(bdata);
 		
 		/* タッチセンサデータ取得 ⇒ ノートナンバー生成 */
 		keyval = touchGet();
 		noteNum = fingerToNoteNum(keyval);
 			
 		/* ノートナンバー＋ベロシティ ⇒ キーオン */
-		keyOnNoteNoWithVovol(noteNum, data);	
-			
+		keyOnNoteNoWithVovol(noteNum, data);
+		
+		/* MIDI送信処理 */
+#if MIDI_ENABLE
+		/* ノート変化アリor息ナシ ⇒ 前回ノートオフ */
+		if( (noteNum!=noteNum_old) || (vel>=4) ){ 
+			midiNoteOff(0x01, noteNum);
+		}
+		
+		/* 息アリand前回息ナシ ⇒ ノートオン */
+		if( (vel_old<4) && (vel>=4) ){
+			midiNoteOn(0x01, noteNum, vel);
+		}
+		else if(vel>=4){
+			/* 息継続 ⇒ アフタータッチ */
+			midiAfterTouch(0x01, vel);
+		}
+		
+		
+		/* めも：ノートオン検出の処理は関数などつかってもう少しまとめたい
+				ブレスにヒステリシスがあるとよい気がする */
+#endif
+
+		vel_old = vel;
+		noteNum_old = noteNum;
+		
 		/* メニュー処理 */
 		menuActivity();
 			

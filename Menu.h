@@ -169,7 +169,7 @@ void ev_setOctave();
 
 /* メニューイベントテーブル：値編集時の動作 */
 #if 1
-const EVENT MENUITEM_EVENT_TBL[] = {
+const EVENT MENUITEM_EVENT_TBL[] = { /* memo... 関数ポインタはPROGMEMにしちゃいけないのかも？ */
 	NULL,		/* MasrerVolume */
 	NULL,			/* PrisetTone */
 	NULL,		/* Transpose */
