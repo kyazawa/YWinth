@@ -275,9 +275,10 @@ const uint16_t FINGER_TBL[] PROGMEM = {
 
 
 extern signed char BOctave;
-
+extern signed char TransposeValue;
 
 uint16_t fingerToNoteNum(uint8_t finger);
 void setBOctave(signed char oct);
+void setTranspose(signed char transpose);
 
 #endif /* FINGER_H_ */

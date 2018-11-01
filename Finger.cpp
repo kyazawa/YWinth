@@ -8,6 +8,7 @@
 #include "Finger.h"
 
 signed char BOctave = 0;
+signed char TransposeValue = 0;
 
 uint16_t fingerToNoteNum(uint8_t finger){
 	uint16_t noteNum;
@@ -22,9 +23,16 @@ uint16_t fingerToNoteNum(uint8_t finger){
 	/* ノートナンバーに基準オクターブ反映 */
 	noteNum += (BOctave*12);
 	
+	/* トランスポーズ値反映 */
+	noteNum += TransposeValue;
+	
 	return noteNum;
 }
 
 void setBOctave(signed char oct){
 	BOctave = oct;
+}
+
+void setTranspose(signed char transpose){
+	TransposeValue = transpose;
 }

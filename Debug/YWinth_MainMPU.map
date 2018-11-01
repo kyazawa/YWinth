@@ -376,7 +376,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1626
+.text           0x00000000     0x1656
  *(.vectors)
  .vectors       0x00000000       0x8c E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
                 0x00000000                __vector_default
@@ -548,150 +548,156 @@ END GROUP
                 0x00000684       0x58 Button.o
                 0x00000684                _Z16buttonGetCommandv
  .text._Z15fingerToNoteNumh
-                0x000006dc       0x3e Finger.o
+                0x000006dc       0x4a Finger.o
                 0x000006dc                _Z15fingerToNoteNumh
  .text._Z10setBOctavea
-                0x0000071a        0x6 Finger.o
-                0x0000071a                _Z10setBOctavea
+                0x00000726        0x6 Finger.o
+                0x00000726                _Z10setBOctavea
+ .text._Z12setTransposea
+                0x0000072c        0x6 Finger.o
+                0x0000072c                _Z12setTransposea
  .text._Z10lcdSendCmdh
-                0x00000720       0x16 LCD.o
-                0x00000720                _Z10lcdSendCmdh
+                0x00000732       0x16 LCD.o
+                0x00000732                _Z10lcdSendCmdh
  .text._Z11lcdSendDatah
-                0x00000736       0x10 LCD.o
-                0x00000736                _Z11lcdSendDatah
+                0x00000748       0x10 LCD.o
+                0x00000748                _Z11lcdSendDatah
  .text._Z12lcdSetCursorii
-                0x00000746       0x1c LCD.o
-                0x00000746                _Z12lcdSetCursorii
+                0x00000758       0x1c LCD.o
+                0x00000758                _Z12lcdSetCursorii
  .text._Z7lcdInitv
-                0x00000762       0x9e LCD.o
-                0x00000762                _Z7lcdInitv
+                0x00000774       0x9e LCD.o
+                0x00000774                _Z7lcdInitv
  .text._Z8lcdPrintPc
-                0x00000800       0x1c LCD.o
-                0x00000800                _Z8lcdPrintPc
+                0x00000812       0x1c LCD.o
+                0x00000812                _Z8lcdPrintPc
  .text.__vector_16
-                0x0000081c       0x70 main.o
-                0x0000081c                __vector_16
+                0x0000082e       0x70 main.o
+                0x0000082e                __vector_16
  .text._Z9setIOModev
-                0x0000088c        0x4 main.o
-                0x0000088c                _Z9setIOModev
+                0x0000089e        0x4 main.o
+                0x0000089e                _Z9setIOModev
  .text._Z8uartInitv
-                0x00000890       0x12 main.o
-                0x00000890                _Z8uartInitv
+                0x000008a2       0x12 main.o
+                0x000008a2                _Z8uartInitv
  .text._Z8uartPutcc
-                0x000008a2       0x10 main.o
-                0x000008a2                _Z8uartPutcc
+                0x000008b4       0x10 main.o
+                0x000008b4                _Z8uartPutcc
  .text._Z8uartPutsPc
-                0x000008b2       0x1c main.o
-                0x000008b2                _Z8uartPutsPc
+                0x000008c4       0x1c main.o
+                0x000008c4                _Z8uartPutsPc
  .text._Z9initTimerv
-                0x000008ce       0x12 main.o
-                0x000008ce                _Z9initTimerv
- .text.main     0x000008e0       0xfa main.o
-                0x000008e0                main
+                0x000008e0       0x12 main.o
+                0x000008e0                _Z9initTimerv
+ .text.main     0x000008f2      0x10a main.o
+                0x000008f2                main
  .text._Z12ev_setOctavev
-                0x000009da        0xe Menu.o
-                0x000009da                _Z12ev_setOctavev
+                0x000009fc        0xe Menu.o
+                0x000009fc                _Z12ev_setOctavev
+ .text._Z15ev_setTransposev
+                0x00000a0a        0xe Menu.o
+                0x00000a0a                _Z15ev_setTransposev
  .text._Z18menuRefreshDisplayv
-                0x000009e8      0x12e Menu.o
-                0x000009e8                _Z18menuRefreshDisplayv
+                0x00000a18      0x12e Menu.o
+                0x00000a18                _Z18menuRefreshDisplayv
  .text._Z8menuInitv
-                0x00000b16       0x24 Menu.o
-                0x00000b16                _Z8menuInitv
+                0x00000b46       0x24 Menu.o
+                0x00000b46                _Z8menuInitv
  .text._Z12menuMoveItema
-                0x00000b3a       0x52 Menu.o
-                0x00000b3a                _Z12menuMoveItema
+                0x00000b6a       0x52 Menu.o
+                0x00000b6a                _Z12menuMoveItema
  .text._Z12menuAdjValuea
-                0x00000b8c       0x7c Menu.o
-                0x00000b8c                _Z12menuAdjValuea
+                0x00000bbc       0x7c Menu.o
+                0x00000bbc                _Z12menuAdjValuea
  .text._Z12menuActivityv
-                0x00000c08       0x6c Menu.o
-                0x00000c08                _Z12menuActivityv
+                0x00000c38       0x6c Menu.o
+                0x00000c38                _Z12menuActivityv
  .text._Z10midiNoteOnhhh
-                0x00000c74       0x2a Midi.o
-                0x00000c74                _Z10midiNoteOnhhh
+                0x00000ca4       0x2a Midi.o
+                0x00000ca4                _Z10midiNoteOnhhh
  .text._Z11midiNoteOffhh
-                0x00000c9e       0x2a Midi.o
-                0x00000c9e                _Z11midiNoteOffhh
+                0x00000cce       0x2a Midi.o
+                0x00000cce                _Z11midiNoteOffhh
  .text._Z14midiAfterTouchhh
-                0x00000cc8       0x26 Midi.o
-                0x00000cc8                _Z14midiAfterTouchhh
+                0x00000cf8       0x26 Midi.o
+                0x00000cf8                _Z14midiAfterTouchhh
  .text._Z7spiInitv
-                0x00000cee        0xe SPI.o
-                0x00000cee                _Z7spiInitv
+                0x00000d1e        0xe SPI.o
+                0x00000d1e                _Z7spiInitv
  .text._Z7spiSendh
-                0x00000cfc        0xa SPI.o
-                0x00000cfc                _Z7spiSendh
+                0x00000d2c        0xa SPI.o
+                0x00000d2c                _Z7spiSendh
  .text._Z9spiCtrlCsh
-                0x00000d06        0xc SPI.o
-                0x00000d06                _Z9spiCtrlCsh
+                0x00000d36        0xc SPI.o
+                0x00000d36                _Z9spiCtrlCsh
  .text._Z11spiRegWritehh
-                0x00000d12       0x1e SPI.o
-                0x00000d12                _Z11spiRegWritehh
+                0x00000d42       0x1e SPI.o
+                0x00000d42                _Z11spiRegWritehh
  .text._Z16spiRegBarstWritehPhh
-                0x00000d30       0x3c SPI.o
-                0x00000d30                _Z16spiRegBarstWritehPhh
+                0x00000d60       0x3c SPI.o
+                0x00000d60                _Z16spiRegBarstWritehPhh
  .text._Z8touchGetv
-                0x00000d6c       0x1e Touch.o
-                0x00000d6c                _Z8touchGetv
+                0x00000d9c       0x1e Touch.o
+                0x00000d9c                _Z8touchGetv
  .text._Z9soundInitv
-                0x00000d8a       0xb6 YMF825.o
-                0x00000d8a                _Z9soundInitv
+                0x00000dba       0xb6 YMF825.o
+                0x00000dba                _Z9soundInitv
  .text._Z7setTonev
-                0x00000e40       0x5c YMF825.o
-                0x00000e40                _Z7setTonev
+                0x00000e70       0x5c YMF825.o
+                0x00000e70                _Z7setTonev
  .text._Z5keyOnhhh
-                0x00000e9c       0x36 YMF825.o
-                0x00000e9c                _Z5keyOnhhh
+                0x00000ecc       0x36 YMF825.o
+                0x00000ecc                _Z5keyOnhhh
  .text._Z5setChv
-                0x00000ed2       0x20 YMF825.o
-                0x00000ed2                _Z5setChv
+                0x00000f02       0x20 YMF825.o
+                0x00000f02                _Z5setChv
  .text._Z12noteNoToFnumj
-                0x00000ef2       0x7c YMF825.o
-                0x00000ef2                _Z12noteNoToFnumj
+                0x00000f22       0x7c YMF825.o
+                0x00000f22                _Z12noteNoToFnumj
  .text._Z20keyOnNoteNoWithVovoljh
-                0x00000f6e       0x48 YMF825.o
-                0x00000f6e                _Z20keyOnNoteNoWithVovoljh
+                0x00000f9e       0x48 YMF825.o
+                0x00000f9e                _Z20keyOnNoteNoWithVovoljh
  .text.libgcc.div
-                0x00000fb6       0x28 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_divmodsi4.o)
-                0x00000fb6                __divmodsi4
+                0x00000fe6       0x28 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_divmodsi4.o)
+                0x00000fe6                __divmodsi4
  .text.libgcc.div
-                0x00000fde       0x10 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_negsi2.o)
-                0x00000fde                __negsi2
+                0x0000100e       0x10 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_negsi2.o)
+                0x0000100e                __negsi2
  .text.libgcc.mul
-                0x00000fee       0x1e e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_umulhisi3.o)
-                0x00000fee                __umulhisi3
+                0x0000101e       0x1e e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_umulhisi3.o)
+                0x0000101e                __umulhisi3
  .text.libgcc.div
-                0x0000100c       0x44 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
-                0x0000100c                __udivmodsi4
+                0x0000103c       0x44 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
+                0x0000103c                __udivmodsi4
  .text.avr-libc
-                0x00001050        0xe e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strcpy_P.o)
-                0x00001050                strcpy_P
+                0x00001080        0xe e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strcpy_P.o)
+                0x00001080                strcpy_P
  .text.avr-libc
-                0x0000105e        0xe e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strcpy.o)
-                0x0000105e                strcpy
+                0x0000108e        0xe e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strcpy.o)
+                0x0000108e                strcpy
  .text.avr-libc
-                0x0000106c       0x5c e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(sprintf.o)
-                0x0000106c                sprintf
+                0x0000109c       0x5c e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(sprintf.o)
+                0x0000109c                sprintf
  .text.avr-libc
-                0x000010c8      0x3fa e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(vfprintf_std.o)
-                0x000010c8                vfprintf
+                0x000010f8      0x3fa e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(vfprintf_std.o)
+                0x000010f8                vfprintf
  .text.avr-libc
-                0x000014c2       0x16 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strnlen_P.o)
-                0x000014c2                strnlen_P
+                0x000014f2       0x16 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strnlen_P.o)
+                0x000014f2                strnlen_P
  .text.avr-libc
-                0x000014d8       0x16 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strnlen.o)
-                0x000014d8                strnlen
+                0x00001508       0x16 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strnlen.o)
+                0x00001508                strnlen
  .text.avr-libc
-                0x000014ee       0x78 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(fputc.o)
-                0x000014ee                fputc
+                0x0000151e       0x78 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(fputc.o)
+                0x0000151e                fputc
  .text.avr-libc
-                0x00001566       0xbc e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(ultoa_invert.o)
-                0x00001566                __ultoa_invert
-                0x00001622                . = ALIGN (0x2)
+                0x00001596       0xbc e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(ultoa_invert.o)
+                0x00001596                __ultoa_invert
+                0x00001652                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001622        0x0 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
-                0x00001622                _exit
-                0x00001622                exit
+ .fini9         0x00001652        0x0 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+                0x00001652                _exit
+                0x00001652                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -710,11 +716,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001622        0x4 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+ .fini0         0x00001652        0x4 e:/atmelstudio7/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001626                _etext = .
+                0x00001656                _etext = .
 
-.data           0x00800100       0x74 load address 0x00001626
+.data           0x00800100       0x74 load address 0x00001656
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -742,7 +748,7 @@ END GROUP
                 0x00800174                _edata = .
                 0x00800174                PROVIDE (__data_end, .)
 
-.bss            0x00800174       0x16
+.bss            0x00800174       0x17
                 0x00800174                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -754,29 +760,32 @@ END GROUP
  .bss.buttonSampleValue
                 0x00800179        0x6 Button.o
                 0x00800179                buttonSampleValue
- .bss.BOctave   0x0080017f        0x1 Finger.o
-                0x0080017f                BOctave
- .bss.cnt       0x00800180        0x1 main.o
-                0x00800180                cnt
+ .bss.TransposeValue
+                0x0080017f        0x1 Finger.o
+                0x0080017f                TransposeValue
+ .bss.BOctave   0x00800180        0x1 Finger.o
+                0x00800180                BOctave
+ .bss.cnt       0x00800181        0x1 main.o
+                0x00800181                cnt
  .bss.menuItemValue
-                0x00800181        0x2 Menu.o
-                0x00800181                menuItemValue
+                0x00800182        0x2 Menu.o
+                0x00800182                menuItemValue
  .bss.menuItemSetValues
-                0x00800183        0x6 Menu.o
-                0x00800183                menuItemSetValues
+                0x00800184        0x6 Menu.o
+                0x00800184                menuItemSetValues
  .bss.menuSelectingItem
-                0x00800189        0x1 Menu.o
-                0x00800189                menuSelectingItem
+                0x0080018a        0x1 Menu.o
+                0x0080018a                menuSelectingItem
  *(COMMON)
-                0x0080018a                PROVIDE (__bss_end, .)
-                0x00001626                __data_load_start = LOADADDR (.data)
-                0x0000169a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0080018b                PROVIDE (__bss_end, .)
+                0x00001656                __data_load_start = LOADADDR (.data)
+                0x000016ca                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080018a        0x0
+.noinit         0x0080018b        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080018a                _end = .
+                0x0080018b                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -854,123 +863,123 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x300
+.debug_aranges  0x00000000      0x310
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x80 Breath.o
  .debug_aranges
                 0x00000080       0x48 Button.o
  .debug_aranges
-                0x000000c8       0x28 Finger.o
+                0x000000c8       0x30 Finger.o
  .debug_aranges
-                0x000000f0       0x48 LCD.o
+                0x000000f8       0x48 LCD.o
  .debug_aranges
-                0x00000138       0x58 main.o
+                0x00000140       0x58 main.o
  .debug_aranges
-                0x00000190       0x48 Menu.o
+                0x00000198       0x50 Menu.o
  .debug_aranges
-                0x000001d8       0x48 Midi.o
+                0x000001e8       0x48 Midi.o
  .debug_aranges
-                0x00000220       0x50 SPI.o
+                0x00000230       0x50 SPI.o
  .debug_aranges
-                0x00000270       0x28 Touch.o
+                0x00000280       0x28 Touch.o
  .debug_aranges
-                0x00000298       0x68 YMF825.o
+                0x000002a8       0x68 YMF825.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x6175
+.debug_info     0x00000000     0x61eb
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x792 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
  .debug_info    0x00000792      0x97c Breath.o
  .debug_info    0x0000110e      0x6fc Button.o
- .debug_info    0x0000180a      0x45f Finger.o
- .debug_info    0x00001c69      0xaf1 LCD.o
- .debug_info    0x0000275a      0xc8b main.o
- .debug_info    0x000033e5      0x950 Menu.o
- .debug_info    0x00003d35      0x737 Midi.o
- .debug_info    0x0000446c      0x7b7 SPI.o
- .debug_info    0x00004c23      0x7ec Touch.o
- .debug_info    0x0000540f      0xd66 YMF825.o
+ .debug_info    0x0000180a      0x49c Finger.o
+ .debug_info    0x00001ca6      0xaf1 LCD.o
+ .debug_info    0x00002797      0xc8b main.o
+ .debug_info    0x00003422      0x989 Menu.o
+ .debug_info    0x00003dab      0x737 Midi.o
+ .debug_info    0x000044e2      0x7b7 SPI.o
+ .debug_info    0x00004c99      0x7ec Touch.o
+ .debug_info    0x00005485      0xd66 YMF825.o
 
-.debug_abbrev   0x00000000     0x1810
+.debug_abbrev   0x00000000     0x181f
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x729 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
  .debug_abbrev  0x00000729      0x1da Breath.o
  .debug_abbrev  0x00000903      0x13b Button.o
- .debug_abbrev  0x00000a3e      0x12b Finger.o
- .debug_abbrev  0x00000b69      0x1eb LCD.o
- .debug_abbrev  0x00000d54      0x28a main.o
- .debug_abbrev  0x00000fde      0x1e5 Menu.o
- .debug_abbrev  0x000011c3      0x12e Midi.o
- .debug_abbrev  0x000012f1      0x166 SPI.o
- .debug_abbrev  0x00001457      0x1cb Touch.o
- .debug_abbrev  0x00001622      0x1ee YMF825.o
+ .debug_abbrev  0x00000a3e      0x13a Finger.o
+ .debug_abbrev  0x00000b78      0x1eb LCD.o
+ .debug_abbrev  0x00000d63      0x28a main.o
+ .debug_abbrev  0x00000fed      0x1e5 Menu.o
+ .debug_abbrev  0x000011d2      0x12e Midi.o
+ .debug_abbrev  0x00001300      0x166 SPI.o
+ .debug_abbrev  0x00001466      0x1cb Touch.o
+ .debug_abbrev  0x00001631      0x1ee YMF825.o
 
-.debug_line     0x00000000     0x197a
+.debug_line     0x00000000     0x19b1
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x169 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
  .debug_line    0x00000169      0x2f8 Breath.o
  .debug_line    0x00000461      0x1ed Button.o
- .debug_line    0x0000064e      0x115 Finger.o
- .debug_line    0x00000763      0x283 LCD.o
- .debug_line    0x000009e6      0x3a6 main.o
- .debug_line    0x00000d8c      0x331 Menu.o
- .debug_line    0x000010bd      0x1a7 Midi.o
- .debug_line    0x00001264      0x1d8 SPI.o
- .debug_line    0x0000143c      0x200 Touch.o
- .debug_line    0x0000163c      0x33e YMF825.o
+ .debug_line    0x0000064e      0x12b Finger.o
+ .debug_line    0x00000779      0x283 LCD.o
+ .debug_line    0x000009fc      0x3b0 main.o
+ .debug_line    0x00000dac      0x348 Menu.o
+ .debug_line    0x000010f4      0x1a7 Midi.o
+ .debug_line    0x0000129b      0x1d8 SPI.o
+ .debug_line    0x00001473      0x200 Touch.o
+ .debug_line    0x00001673      0x33e YMF825.o
 
-.debug_frame    0x00000000      0x674
+.debug_frame    0x00000000      0x694
  *(.debug_frame)
  .debug_frame   0x00000000      0x11c Breath.o
  .debug_frame   0x0000011c       0x74 Button.o
- .debug_frame   0x00000190       0x34 Finger.o
- .debug_frame   0x000001c4       0x80 LCD.o
- .debug_frame   0x00000244       0xe8 main.o
- .debug_frame   0x0000032c       0xa0 Menu.o
- .debug_frame   0x000003cc       0xa4 Midi.o
- .debug_frame   0x00000470       0xb4 SPI.o
- .debug_frame   0x00000524       0x50 Touch.o
- .debug_frame   0x00000574      0x100 YMF825.o
+ .debug_frame   0x00000190       0x44 Finger.o
+ .debug_frame   0x000001d4       0x80 LCD.o
+ .debug_frame   0x00000254       0xe8 main.o
+ .debug_frame   0x0000033c       0xb0 Menu.o
+ .debug_frame   0x000003ec       0xa4 Midi.o
+ .debug_frame   0x00000490       0xb4 SPI.o
+ .debug_frame   0x00000544       0x50 Touch.o
+ .debug_frame   0x00000594      0x100 YMF825.o
 
-.debug_str      0x00000000      0xf00
+.debug_str      0x00000000      0xf46
  *(.debug_str)
  .debug_str     0x00000000      0x296 E:/AtmelStudio7/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega1284p/avr51/crtatmega1284p.o
  .debug_str     0x00000296      0x42a Breath.o
                                 0x46d (size before relaxing)
  .debug_str     0x000006c0      0x122 Button.o
                                 0x3c9 (size before relaxing)
- .debug_str     0x000007e2       0x71 Finger.o
-                                0x319 (size before relaxing)
- .debug_str     0x00000853      0x101 LCD.o
+ .debug_str     0x000007e2       0x9c Finger.o
+                                0x351 (size before relaxing)
+ .debug_str     0x0000087e      0x101 LCD.o
                                 0x3ce (size before relaxing)
- .debug_str     0x00000954      0x233 main.o
+ .debug_str     0x0000097f      0x229 main.o
                                 0x6e4 (size before relaxing)
- .debug_str     0x00000b87      0x130 Menu.o
-                                0x4a1 (size before relaxing)
- .debug_str     0x00000cb7       0x83 Midi.o
+ .debug_str     0x00000ba8      0x155 Menu.o
+                                0x4e5 (size before relaxing)
+ .debug_str     0x00000cfd       0x83 Midi.o
                                 0x399 (size before relaxing)
- .debug_str     0x00000d3a       0x9e SPI.o
+ .debug_str     0x00000d80       0x9e SPI.o
                                 0x374 (size before relaxing)
- .debug_str     0x00000dd8       0x66 Touch.o
+ .debug_str     0x00000e1e       0x66 Touch.o
                                 0x36e (size before relaxing)
- .debug_str     0x00000e3e       0xc2 YMF825.o
+ .debug_str     0x00000e84       0xc2 YMF825.o
                                 0x490 (size before relaxing)
 
-.debug_loc      0x00000000     0x1a23
+.debug_loc      0x00000000     0x1a2f
  *(.debug_loc)
  .debug_loc     0x00000000      0x378 Breath.o
  .debug_loc     0x00000378      0x139 Button.o
- .debug_loc     0x000004b1       0x84 Finger.o
- .debug_loc     0x00000535      0x45a LCD.o
- .debug_loc     0x0000098f      0x3b7 main.o
- .debug_loc     0x00000d46      0x268 Menu.o
- .debug_loc     0x00000fae      0x1bf Midi.o
- .debug_loc     0x0000116d      0x201 SPI.o
- .debug_loc     0x0000136e      0x173 Touch.o
- .debug_loc     0x000014e1      0x542 YMF825.o
+ .debug_loc     0x000004b1       0x90 Finger.o
+ .debug_loc     0x00000541      0x45a LCD.o
+ .debug_loc     0x0000099b      0x3b7 main.o
+ .debug_loc     0x00000d52      0x268 Menu.o
+ .debug_loc     0x00000fba      0x1bf Midi.o
+ .debug_loc     0x00001179      0x201 SPI.o
+ .debug_loc     0x0000137a      0x173 Touch.o
+ .debug_loc     0x000014ed      0x542 YMF825.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -990,18 +999,18 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x260
+.debug_ranges   0x00000000      0x270
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x70 Breath.o
  .debug_ranges  0x00000070       0x38 Button.o
- .debug_ranges  0x000000a8       0x18 Finger.o
- .debug_ranges  0x000000c0       0x38 LCD.o
- .debug_ranges  0x000000f8       0x48 main.o
- .debug_ranges  0x00000140       0x38 Menu.o
- .debug_ranges  0x00000178       0x38 Midi.o
- .debug_ranges  0x000001b0       0x40 SPI.o
- .debug_ranges  0x000001f0       0x18 Touch.o
- .debug_ranges  0x00000208       0x58 YMF825.o
+ .debug_ranges  0x000000a8       0x20 Finger.o
+ .debug_ranges  0x000000c8       0x38 LCD.o
+ .debug_ranges  0x00000100       0x48 main.o
+ .debug_ranges  0x00000148       0x40 Menu.o
+ .debug_ranges  0x00000188       0x38 Midi.o
+ .debug_ranges  0x000001c0       0x40 SPI.o
+ .debug_ranges  0x00000200       0x18 Touch.o
+ .debug_ranges  0x00000218       0x58 YMF825.o
 
 .debug_macro
  *(.debug_macro)

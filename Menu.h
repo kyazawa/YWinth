@@ -164,18 +164,19 @@ const signed char MENUITEM_HAS_VALUENAME[] PROGMEM = {
 };
 
 
-/* メニューイベント */
+/* ★ メニューイベント */
 void ev_setOctave();
+void ev_setTranspose();
 
 /* メニューイベントテーブル：値編集時の動作 */
 #if 1
 const EVENT MENUITEM_EVENT_TBL[] = { /* memo... 関数ポインタはPROGMEMにしちゃいけないのかも？ */
-	NULL,		/* MasrerVolume */
-	NULL,			/* PrisetTone */
-	NULL,		/* Transpose */
+	NULL,				/* MasrerVolume */
+	NULL,				/* PrisetTone */
+	ev_setTranspose,	/* Transpose */
 	ev_setOctave,		/* Octave */
-	NULL,		/* BreathLevel*/
-	NULL			/* FingerPattern */
+	NULL,				/* BreathLevel*/
+	NULL				/* FingerPattern */
 };
 #endif
 

@@ -158,3 +158,7 @@ void menuActivity(){
 void ev_setOctave(){
 	setBOctave(*menuItemValue);
 }
+
+void ev_setTranspose(){
+	setTranspose(*menuItemValue);
+}

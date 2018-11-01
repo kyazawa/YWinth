@@ -123,8 +123,8 @@ int main(void)
 			midiNoteOff(0x01, noteNum);
 		}
 		
-		/* 息アリand前回息ナシ ⇒ ノートオン */
-		if( (vel_old<4) && (vel>=4) ){
+		/* (息アリand前回息ナシ)orノート変化 ⇒ ノートオン */
+		if( ((vel_old<4)&&(vel>=4)) || (noteNum!=noteNum_old) ){
 			midiNoteOn(0x01, noteNum, vel);
 		}
 		else if(vel>=4){
