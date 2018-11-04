@@ -30,6 +30,9 @@ void midiNoteOn(uint8_t ch, uint8_t note, uint8_t vel);
 /* MIDIノートオフ */
 void midiNoteOff(uint8_t ch, uint8_t note);
 
+/* MIDIオールノートオフ */
+void midiAllNoteOff(uint8_t ch);
+
 /* MIDIアフタータッチ */
 void midiAfterTouch(uint8_t ch, uint8_t vel);
 

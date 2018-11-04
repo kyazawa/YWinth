@@ -32,9 +32,20 @@ void midiNoteOn(uint8_t ch, uint8_t note, uint8_t vel){
 /* MIDIノートオフ */
 void midiNoteOff(uint8_t ch, uint8_t note){
 	char midimsg[4];
-	midimsg[0] = MIDI_NOTEON | ch;
+	midimsg[0] = MIDI_NOTEOF | ch;
 	midimsg[1] = note;
 	midimsg[2] = 0x00; /* ベロシティ=0 ⇒ noteoff */
+	midimsg[3] = '\0';
+	
+	uartPuts(midimsg);
+}
+
+/* MIDIオールノートオフ */
+void midiAllNoteOff(uint8_t ch){
+	char midimsg[4];
+	midimsg[0] = 0xB0 | ch;
+	midimsg[1] = 0x7B;
+	midimsg[2] = 0x00;
 	midimsg[3] = '\0';
 	
 	uartPuts(midimsg);

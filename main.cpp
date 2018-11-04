@@ -89,6 +89,7 @@ int main(void)
 	
 	_delay_ms(500); /* 息安定待ち */
 	setBreathOffset();
+	midiAllNoteOff(0x01);
 	
 	menuInit();
 	/* 初期化完了，割り込み有効化！ */
@@ -118,28 +119,28 @@ int main(void)
 		
 		/* MIDI送信処理 */
 #if 1
-		/* ノート変化アリor息ナシ ⇒ 前回ノートオフ */
-		if( (noteNum!=noteNum_old) || (vel>=4) ){ 
-			midiNoteOff(0x01, noteNum_old);
-		}
-		if( ((vel_old<4)&&(vel>=4)) || (noteNum!=noteNum_old) ){ /* (息アリand前回息ナシ)orノート変化 ⇒ ノートオン */
+		/*息終了⇒ノートオフ */
+		if( (vel<20) ){ 
+			midiNoteOn(0x01, noteNum_old, 1);
+		}else
+		if( ((vel_old<20)&&(vel>=20)) ){ /* 息開始でノートオン */
 			midiNoteOn(0x01, noteNum, vel);
-		}
-		else if(vel>=4){
-			/* 息継続 ⇒ アフタータッチ */
-			midiAfterTouch(0x01, vel);
+		}else{
+			//midiAfterTouch(0x01, vel);
 		}
 		
-		_delay_ms(200);
+		//_delay_ms(30);
 		
 		
 		/* めも：ノートオン検出の処理は関数などつかってもう少しまとめたい
 				ブレスにヒステリシスがあるとよい気がする */
 #endif
+
 /*
-		midiNoteOn(0x01,60, 0x50);
+		midiNoteOn(0x00,60, 0x50);
 		_delay_ms(200);
-		midiNoteOff(0x01,60);
+		//midiNoteOff(0x01,60);
+		midiNoteOn(0x00,60, 0x00);
 		_delay_ms(200);
 */
 		vel_old = vel;
