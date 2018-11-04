@@ -11,8 +11,11 @@
 void midiInit(){
 	/* ボーレートを312500BPSに設定 */
 	UCSR0B = (1<<TXEN0) | (1<<RXEN0);
+	/*
 	UBRR0H = (F_CPU/16/MIDIBAUD-1)>>8;
 	UBRR0L = (F_CPU/16/MIDIBAUD-1);
+	*/
+	UBRR0 = 31;
 }
 
 /* MIDIノートオン */

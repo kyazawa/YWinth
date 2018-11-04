@@ -13,8 +13,8 @@
 
 #define MIDI_ENABLE 1
 
-/* MIDIボーレート：312500bps */
-#define MIDIBAUD 312500UL
+/* MIDIボーレート：31250bps */
+#define MIDIBAUD 31250
 
 #define MIDI_NOTEON 0x90 /* ノートオン */
 #define MIDI_NOTEOF 0x80 /* ノートオフ */

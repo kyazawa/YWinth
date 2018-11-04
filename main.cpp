@@ -51,7 +51,7 @@ int main(void)
 	
 	setIOMode();
 	buttonInit();
-	uartInit();
+	//uartInit();
 	
 	soundInit();
 	setTone();
@@ -69,7 +69,7 @@ int main(void)
 
 	/* MIDI初期化処理 */
 #if MIDI_ENABLE
-	//midiInit();
+	midiInit();
 #endif
 
 	/* LCD表示処理 LCDは遅いので気を遣う */
@@ -117,14 +117,12 @@ int main(void)
 		keyOnNoteNoWithVovol(noteNum, data);
 		
 		/* MIDI送信処理 */
-#if MIDI_ENABLE
+#if 1
 		/* ノート変化アリor息ナシ ⇒ 前回ノートオフ */
 		if( (noteNum!=noteNum_old) || (vel>=4) ){ 
-			midiNoteOff(0x01, noteNum);
+			midiNoteOff(0x01, noteNum_old);
 		}
-		
-		/* (息アリand前回息ナシ)orノート変化 ⇒ ノートオン */
-		if( ((vel_old<4)&&(vel>=4)) || (noteNum!=noteNum_old) ){
+		if( ((vel_old<4)&&(vel>=4)) || (noteNum!=noteNum_old) ){ /* (息アリand前回息ナシ)orノート変化 ⇒ ノートオン */
 			midiNoteOn(0x01, noteNum, vel);
 		}
 		else if(vel>=4){
@@ -132,11 +130,18 @@ int main(void)
 			midiAfterTouch(0x01, vel);
 		}
 		
+		_delay_ms(200);
+		
 		
 		/* めも：ノートオン検出の処理は関数などつかってもう少しまとめたい
 				ブレスにヒステリシスがあるとよい気がする */
 #endif
-
+/*
+		midiNoteOn(0x01,60, 0x50);
+		_delay_ms(200);
+		midiNoteOff(0x01,60);
+		_delay_ms(200);
+*/
 		vel_old = vel;
 		noteNum_old = noteNum;
 		
