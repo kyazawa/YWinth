@@ -13,7 +13,7 @@ uint32_t offset;
 void i2cInit(void)
 {
 	TWBR = 2;
-	TWSR = 0x02;
+	TWSR = 0x08;
 	TWCR = (1<<TWEN); /* I2C—LŒø‰» */
 }
 

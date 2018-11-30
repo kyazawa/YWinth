@@ -57,6 +57,8 @@ int main(void)
 	setTone();
 	setCh();
 	
+	keyOnNoteNoWithVovol(60, 31);
+	
 	/* UARTスタートアップﾒｯｾｰｼﾞ送信(MIDI有効の場合は送信しない) */
 #if (!MIDI_ENABLE)
 	sprintf(str, "***      YWinth Serial Console      ***\nFirmware version: %s\n", VERSIONCODE);
@@ -81,6 +83,9 @@ int main(void)
 	lcdSetCursor(11,1);
 	_delay_ms(20);
 	lcdPrint(VERSIONCODE);
+	_delay_ms(20);
+	
+	keyOff();
 	
 	initTimer();
 	breathInit();
@@ -89,6 +94,7 @@ int main(void)
 	
 	_delay_ms(500); /* 息安定待ち */
 	setBreathOffset();
+	_delay_ms(500);
 	midiAllNoteOff(0x01);
 	
 	menuInit();
@@ -109,13 +115,18 @@ int main(void)
 		bdata = getBreathOffsetValue();
 		data = breathToVovol(bdata);
 		vel = breathToVelocity(bdata);
+	
 		
 		/* タッチセンサデータ取得 ⇒ ノートナンバー生成 */
 		keyval = touchGet();
 		noteNum = fingerToNoteNum(keyval);
 			
 		/* ノートナンバー＋ベロシティ ⇒ キーオン */
-		keyOnNoteNoWithVovol(noteNum, data);
+		if(noteNum != 0){
+			keyOnNoteNoWithVovol(noteNum, data);
+		}else{
+			keyOff();
+		}
 		
 		/* MIDI送信処理 */
 #if 1
@@ -126,7 +137,7 @@ int main(void)
 		if( ((vel_old<20)&&(vel>=20)) ){ /* 息開始でノートオン */
 			midiNoteOn(0x01, noteNum, vel);
 		}else{
-			//midiAfterTouch(0x01, vel);
+			midiAfterTouch(0x01, vel);
 		}
 		
 		//_delay_ms(30);
