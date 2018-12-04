@@ -45,6 +45,7 @@ C_SRCS +=  \
 ../Menu.cpp \
 ../Midi.cpp \
 ../SPI.cpp \
+../Tone.cpp \
 ../Touch.cpp \
 ../YMF825.cpp
 
@@ -64,6 +65,7 @@ main.o \
 Menu.o \
 Midi.o \
 SPI.o \
+Tone.o \
 Touch.o \
 YMF825.o
 
@@ -76,6 +78,7 @@ main.o \
 Menu.o \
 Midi.o \
 SPI.o \
+Tone.o \
 Touch.o \
 YMF825.o
 
@@ -88,6 +91,7 @@ main.d \
 Menu.d \
 Midi.d \
 SPI.d \
+Tone.d \
 Touch.d \
 YMF825.d
 
@@ -100,6 +104,7 @@ main.d \
 Menu.d \
 Midi.d \
 SPI.d \
+Tone.d \
 Touch.d \
 YMF825.d
 
@@ -167,6 +172,13 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./SPI.o: .././SPI.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)E:\AtmelStudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega1284p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./Tone.o: .././Tone.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)E:\AtmelStudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega1284p -B "E:\AtmelStudio7\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega1284p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

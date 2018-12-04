@@ -42,5 +42,8 @@ void midiControlChange();
 /* MIDIプログラムチェンジ */
 void midiProgramChange();
 
+void midiPutc(char a);
+
+void midiPuts(char * str);
 
 #endif /* MIDI_H_ */

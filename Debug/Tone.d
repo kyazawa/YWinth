@@ -1,4 +1,4 @@
-Button.d Button.o: .././Button.cpp .././Button.h .././YWinthCommon.h \
+Tone.d Tone.o: .././Tone.cpp .././Tone.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -21,9 +21,9 @@ Button.d Button.o: .././Button.cpp .././Button.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  .././SPI.h .././Touch.h .././YMF825.h .././Breath.h .././Finger.h \
- .././LCD.h .././Menu.h .././Midi.h .././Tone.h
+ .././LCD.h .././Button.h .././Menu.h .././Midi.h
 
-.././Button.h:
+.././Tone.h:
 
 .././YWinthCommon.h:
 
@@ -81,8 +81,8 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h
 
 .././LCD.h:
 
+.././Button.h:
+
 .././Menu.h:
 
 .././Midi.h:
-
-.././Tone.h:

@@ -217,6 +217,12 @@
     <Compile Include="SPI.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Tone.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Tone.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Touch.cpp">
       <SubType>compile</SubType>
     </Compile>

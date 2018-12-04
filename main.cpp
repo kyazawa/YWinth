@@ -59,15 +59,15 @@ int main(void)
 	
 	keyOnNoteNoWithVovol(60, 31);
 	
-	/* UARTスタートアップﾒｯｾｰｼﾞ送信(MIDI有効の場合は送信しない) */
-#if (!MIDI_ENABLE)
+	uartInit();
+	
+	/* UARTスタートアップﾒｯｾｰｼﾞ送信 */
 	sprintf(str, "***      YWinth Serial Console      ***\nFirmware version: %s\n", VERSIONCODE);
 	uartPuts(str);
 	uartPuts("4 Operator FM Sound Wind Synthesizer.\n");
 	uartPuts("Designed by K.Yazawa.\n");
 	uartPuts("This is Serial Console.\n");
 	uartPuts("Please input command.\n");
-#endif
 
 	/* MIDI初期化処理 */
 #if MIDI_ENABLE

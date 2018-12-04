@@ -49,11 +49,12 @@ const char* const MENUITEMS_TBL[] PROGMEM = {
 /* ★設定値ユニーク名テーブル */
 
 /* 音色名ﾃｰﾌﾞﾙ */
-const char TONENAME_STR_TBL[4][8] PROGMEM = {
-	"SawWave",
+const char TONENAME_STR_TBL[5][8] PROGMEM = {
 	"SinWave",
-	"AltoSax",
-	"  Flute"
+	"Brass 1",
+	"Brass 2",
+	"SquWave",
+	"SawWave"
 };
 
 /* 移調(トランスポーズ)テーブル */
@@ -87,6 +88,7 @@ const char* const MENUITEM_VALUENAME_TBL[] PROGMEM = {
 	TONENAME_STR_TBL[1],
 	TONENAME_STR_TBL[2],
 	TONENAME_STR_TBL[3],
+	TONENAME_STR_TBL[4],
 	
 	/* Transpose */
 	TRANSPOSE_STR_TBL[0], /* 0x04 */
@@ -112,10 +114,10 @@ const char* const MENUITEM_VALUENAME_TBL[] PROGMEM = {
 const uint8_t MENUITEM_VALUENAME_ADDR_TBL[] PROGMEM = {
 	255, /* MasterVolume */
 	0,   /* PrisetTone */
-	4,   /* Transpose */
+	5,   /* Transpose */
 	255,
 	255,
-	16
+	17
 };
 
 
@@ -135,7 +137,7 @@ const signed char MENUITEM_MIN_TBL[] PROGMEM = {
 /* 設定可能最大値 */
 const signed char MENUITEM_MAX_TBL[] PROGMEM = {
 	31,		/* MasrerVolume */
-	3,		/* PrisetTone */
+	4,		/* PrisetTone */
 	6,		/* Transpose */
 	4,		/* Octave */
 	100,	/* BreathLevel*/
@@ -145,7 +147,7 @@ const signed char MENUITEM_MAX_TBL[] PROGMEM = {
 /* 初期値テーブル */
 const signed char MENUITEM_DEFAULT_TBL[] PROGMEM = {
 	20,		/* MasrerVolume */
-	1,		/* PrisetTone */
+	0,		/* PrisetTone */
 	0,		/* Transpose */
 	0,		/* Octave */
 	50,		/* BreathLevel*/
@@ -167,12 +169,13 @@ const signed char MENUITEM_HAS_VALUENAME[] PROGMEM = {
 /* ★ メニューイベント */
 void ev_setOctave();
 void ev_setTranspose();
+void ev_setPrisetTone();
 
 /* メニューイベントテーブル：値編集時の動作 */
 #if 1
 const EVENT MENUITEM_EVENT_TBL[] = { /* memo... 関数ポインタはPROGMEMにしちゃいけないのかも？ */
 	NULL,				/* MasrerVolume */
-	NULL,				/* PrisetTone */
+	ev_setPrisetTone,	/* PrisetTone */
 	ev_setTranspose,	/* Transpose */
 	ev_setOctave,		/* Octave */
 	NULL,				/* BreathLevel*/

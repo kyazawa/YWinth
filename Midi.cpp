@@ -9,13 +9,10 @@
 
 /* MIDI初期化 */
 void midiInit(){
-	/* ボーレートを312500BPSに設定 */
-	UCSR0B = (1<<TXEN0) | (1<<RXEN0);
-	/*
-	UBRR0H = (F_CPU/16/MIDIBAUD-1)>>8;
-	UBRR0L = (F_CPU/16/MIDIBAUD-1);
-	*/
-	UBRR0 = 31;
+	/* ＭＩＤＩ有効化 */
+	UCSR1B = (1<<TXEN1) | (1<<RXEN1);
+	/* ボーレートを31250BPSに設定 */
+	UBRR1 = 31;
 }
 
 /* MIDIノートオン */
@@ -26,7 +23,7 @@ void midiNoteOn(uint8_t ch, uint8_t note, uint8_t vel){
 	midimsg[2] = vel;
 	midimsg[3] = '\0';
 	
-	uartPuts(midimsg);
+	midiPuts(midimsg);
 }
 
 /* MIDIノートオフ */
@@ -37,7 +34,7 @@ void midiNoteOff(uint8_t ch, uint8_t note){
 	midimsg[2] = 0x00; /* ベロシティ=0 ⇒ noteoff */
 	midimsg[3] = '\0';
 	
-	uartPuts(midimsg);
+	midiPuts(midimsg);
 }
 
 /* MIDIオールノートオフ */
@@ -48,7 +45,7 @@ void midiAllNoteOff(uint8_t ch){
 	midimsg[2] = 0x00;
 	midimsg[3] = '\0';
 	
-	uartPuts(midimsg);
+	midiPuts(midimsg);
 }
 
 /* MIDIアフタータッチ */
@@ -59,7 +56,7 @@ void midiAfterTouch(uint8_t ch, uint8_t vel){
 	midimsg[1] = vel;
 	midimsg[2] = '\0';
 	
-	uartPuts(midimsg);
+	midiPuts(midimsg);
 }
 
 /* MIDIコントロールチェンジ */
@@ -70,4 +67,17 @@ void midiControlChange(){
 /* MIDIプログラムチェンジ */
 void midiProgramChange(){
 	
+}
+
+void midiPutc(char a){
+	/* MIDIに一文字出力 */
+	while(!(UCSR1A&0b00100000));
+	UDR1 = a;
+}
+
+void midiPuts(char * str){
+	while(*str != '\0'){
+		midiPutc(*str);
+		str++;
+	}
 }

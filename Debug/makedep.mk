@@ -18,6 +18,8 @@ Midi.cpp
 
 SPI.cpp
 
+Tone.cpp
+
 Touch.cpp
 
 YMF825.cpp

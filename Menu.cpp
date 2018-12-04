@@ -162,3 +162,7 @@ void ev_setOctave(){
 void ev_setTranspose(){
 	setTranspose(*menuItemValue);
 }
+
+void ev_setPrisetTone(){
+	setPrisetTone((uint8_t)*menuItemValue);
+}
