@@ -15,10 +15,10 @@ using namespace std;
 /* SPI’ÊMŠÖ˜A */
 void spiInit();
 void spiSend(uint8_t data);
-void spiRead();
+uint8_t spiRead();
 void spiCtrlCs(uint8_t en);
 void spiRegWrite(uint8_t addr, uint8_t data);
-void spiRegRead(uint8_t addr);
+uint8_t spiRegRead(uint8_t addr);
 void spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize);
 
 

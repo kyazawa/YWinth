@@ -184,6 +184,12 @@
     <Compile Include="Button.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Comm.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Comm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Finger.cpp">
       <SubType>compile</SubType>
     </Compile>

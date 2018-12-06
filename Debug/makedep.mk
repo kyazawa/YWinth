@@ -6,6 +6,8 @@ Breath.cpp
 
 Button.cpp
 
+Comm.cpp
+
 Finger.cpp
 
 LCD.cpp

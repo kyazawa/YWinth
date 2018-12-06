@@ -31,8 +31,12 @@ void spiSend(uint8_t data){
 	while((SPSR & (1<<SPIF)) == 0); /* 送信完了待ち */
 }
 
-void spiRead(){
-	
+uint8_t spiRead(){
+	uint8_t data;
+	SPDR = 0; /* ダミーデータ(クロックのみ送出) */
+	while((SPSR & (1<<SPIF)) == 0); /* 送信完了待ち */
+	data = SPDR; /* 受信データ返す */
+	return data;
 }
 
 void spiCtrlCs(uint8_t en){
@@ -73,9 +77,11 @@ void spiRegBarstWrite(uint8_t addr, uint8_t * data, uint8_t dsize){
 	spiCtrlCs(DISABLE);
 }
 
-void spiRegRead(uint8_t addr){
+uint8_t spiRegRead(uint8_t addr){
+	uint8_t data;
 	spiCtrlCs(ENABLE);
 	spiSend( 0b10000000 | addr ); /* RW=1(read) set */
 	spiRead();
 	spiCtrlCs(DISABLE);
+	return data;
 }

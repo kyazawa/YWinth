@@ -21,7 +21,7 @@ Menu.d Menu.o: .././Menu.cpp .././Menu.h .././YWinthCommon.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\twi.h \
  e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  .././SPI.h .././Touch.h .././YMF825.h .././Breath.h .././Finger.h \
- .././LCD.h .././Button.h .././Midi.h .././Tone.h
+ .././LCD.h .././Button.h .././Midi.h .././Tone.h .././Comm.h
 
 .././Menu.h:
 
@@ -86,3 +86,5 @@ e:\atmelstudio7\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h
 .././Midi.h:
 
 .././Tone.h:
+
+.././Comm.h:

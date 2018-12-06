@@ -11,48 +11,51 @@
 
 #include "YWinthCommon.h"
 
-#if 0
+
+
 /* オペレータデータ保存用の構造体 */
-typedef struct opdata_t {
-	uint8_t ar; /* アタックレート */
-	uint8_t dr; /* ディケイレート */
-	uint8_t sr; /* サスティンレート */
-	uint8_t sl; /* サスティンレベル */
-	uint8_t rr; /* リリースレート */
-	uint8_t mul;/* 周波数倍率 */
-	uint8_t det;/* デチューン */
-	uint8_t tl; /* トータルレベル */
-	uint8_t ksl;/* キースケールセンシティビティ */
-	uint8_t ws; /* 波形選択 */
-	uint8_t dvb;/* ビブラート有効 */
-	uint8_t am; /* AM変調有効 */
-} OPDATA_T;
+struct opdata_t {
+	uint8_t ar; /* アタックレート(0-15) */
+	uint8_t dr; /* ディケイレート(0-15) */
+	uint8_t sr; /* サスティンレート(0-15) */
+	uint8_t sl; /* サスティンレベル(0-15) */
+	uint8_t rr; /* リリースレート(0-15) */
+	uint8_t mul;/* 周波数倍率(0-15) */
+	uint8_t det;/* デチューン(0-7) */
+	uint8_t tl; /* トータルレベル(0-63) */
+	uint8_t ksl;/* KS有効(0/1) */
+	uint8_t ksr;/* KS深さ(0-3)*/
+	uint8_t ws; /* 波形選択(0-31) */
+	uint8_t dvb;/* ビブラート深さ(0-3) */
+	uint8_t evb;/* ビブラート有効(0/1) */
+	uint8_t dam; /* AM変調深さ(0-3)*/
+	uint8_t eam; /* AM変調有効(0/1) */
+	uint8_t fb;  /* フィードバック深さ(0-7) */
+	uint8_t xof; /* キーオフ無視(0/1) */
+};
 
 /* トーンデータ保存用の構造体 */
-typedef struct tonedata_t {
+struct tonedata_t {
 	/* 全オペレータ共通パラメータ */
-	uint8_t arg; /* アルゴリズム */
-	uint8_t lfo; /* LFO(低周波変調) */
-	uint8_t bo;  /* ベースオクターブ */
-	uint8_t fb;  /* フィードバック１ */
-	uint8_t fb2; /* フィードバック２ */
+	uint8_t arg; /* アルゴリズム    (0-7) */
+	uint8_t lfo; /* LFO(低周波変調) (0-3) */
+	uint8_t bo;  /* ベースオクターブ (0-3) */
 	
 	/* 個別オペレータパラメータ */
-	OPDATA_T operator[4];
-} TONEDATA_T;
-#endif
+	opdata_t op[4]; /* opertorってたぶんC++の予約語やで！ */
+	
+};
 
-
-const uint8_t TONE_TBL[5][35] PROGMEM = {
+const uint8_t TONE_TBL[6][35] PROGMEM = {
 	/* default tone(sine wave) */
 	{
 		0x81,//header
 		//T_ADR 0
 		0x01,0x85,
-		0x00,0x7F,0xF4,0xBB,0x00,0x10,0x40,
-		0x00,0xAF,0xA0,0x0E,0x03,0x10,0x40,
-		0x00,0x2F,0xF3,0x9B,0x00,0x20,0x41,
-		0x00,0xAF,0xA0,0x0E,0x01,0x10,0x40,
+		0x00,0x7F,0xF4,0xBB,0x00,0x10,0x40, /* opr1 */
+		0x00,0xAF,0xA0,0x0E,0x03,0x10,0x40, /* opr2 */
+		0x00,0x2F,0xF3,0x9B,0x00,0x20,0x41, /* opr3 */
+		0x00,0xAF,0xA0,0x0E,0x01,0x10,0x40, /* opr4 */
 		0x80,0x03,0x81,0x80,
 	},
 	
@@ -101,11 +104,60 @@ const uint8_t TONE_TBL[5][35] PROGMEM = {
 		0x00,0x2F,0xF3,0x9B,0x00,0x20,0xC1,
 		0x00,0xAF,0xA0,0x0E,0x01,0x10,0xC0,
 		0x80,0x03,0x81,0x80,
+	},
+	
+	{
+		/* 0 */ 0x81,//headerHeader:1byte(80H+MaximumToneNumber)
+		//T_ADR0
+		//EntireToneSetting
+		/* 1 */ 0x01,//BO(BasicOctave)
+		/* 2 */ 0x43,//LFO,ALG
+		//Operator1Setting
+		/* 3 */ 0x00,//SR,XOF,KSR
+		0xE7,//RR,DR
+		0xFF,//AR,SL
+		0x9D,//TL,KSL
+		0x00,//DAM(amplitudemodulationdepth),EAM(enableamplitudemodulation),DVB(vibratodepth),EVB(enablevibrato)
+		0x10,//MULTI(magnificationoffrequency),DT(detune)
+		0x40,//WS(waveshape),FB(FMfeedbacklevel)
+		//Operator2Setting
+		0x20,//SR,XOF,KSR
+		0x33,//RR,DR
+		0xE2,//AR,SL
+		0x73,//TL,KSL
+		0x00,//DAM(amplitudemodulationdepth),EAM(enableamplitudemodulation),DVB(vibratodepth),EVB(enablevibrato)
+		0x50,//MULTI(magnificationoffrequency),DT(detune)
+		0x40,//WS(waveshape),FB(FMfeedbacklevel)
+		//Operator3Setting
+		0x10,//SR,XOF,KSR
+		0x41,//RR,DR
+		0xD3,//AR,SL
+		0x5B,//TL,KSL
+		0x00,//DAM(amplitudemodulationdepth),EAM(enableamplitudemodulation),DVB(vibratodepth),EVB(enablevibrato)
+		0x10,//MULTI(magnificationoffrequency),DT(detune)
+		0x41,//WS(waveshape),FB(FMfeedbacklevel)
+		//Operator4Setting
+		0x20,//SR,XOF,KSR
+		0x63,//RR,DR
+		0xD4,//AR,SL
+		0x02,//TL,KSL
+		0x01,//DAM(amplitudemodulationdepth),EAM(enableamplitudemodulation),DVB(vibratodepth),EVB(enablevibrato)
+		0x10,//MULTI(magnificationoffrequency),DT(detune)
+		0x40,//WS(waveshape),FB(FMfeedbacklevel)
+		0x80,0x03,0x81,0x80,//End(80H,03H,81H,80H)
+				
+		
 	}
 };
 
 
 
 void setPrisetTone(uint8_t tone_num);
+
+void toneRegRead(uint8_t * tone_data);
+void toneRegWrite(uint8_t * tone_data);
+
+void toneWrite(tonedata_t * tone);
+void toneRead(tonedata_t * tone);
 
 #endif /* TONE_H_ */

@@ -17,9 +17,6 @@ using namespace std;
 #define F_CPU 16000000UL
 #endif
 
-/* UARTボーレート：115200bps */
-#define BAUD 115200
-
 #define ENABLE  1 /* 有効 */
 #define DISABLE 0 /* 無効 */
 
@@ -43,6 +40,7 @@ using namespace std;
 #include "Menu.h"
 #include "Midi.h"
 #include "Tone.h"
+#include "Comm.h"
 
 /* 各種プロトタイプ宣言！（クラスに統合予定！） */
 
