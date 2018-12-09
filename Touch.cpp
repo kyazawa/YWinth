@@ -51,16 +51,6 @@ void decodeKey(){
 }
 
 uint8_t touchGet(){
-	uint8_t FINGER_NNUM_TBL[8] = {
-		67, /* G */
-		69, /* A */
-		71, /* B */
-		72, /* C+ */
-		60, /* C */
-		62, /* D */
-		64, /* E */
-		65  /* F */
-	};
 	uint8_t keyval;
 	
 	/* L出力（放電） */
@@ -70,24 +60,13 @@ uint8_t touchGet(){
 	DDRA = 0x00;
 	
 	/* 充電待ち */
-	_delay_us(20);
+	_delay_us(20); /* 時定数を超えるのをまつ */
 	
 	/* 電圧検出 */
 	keyval = PINA; /* 0:押されてる 1:押されてない */
+	/* ピンの電圧を検出！ */
 	
 	/* 正論理に変えて返す */
 	return ~keyval;
-	
-	#if 0 /* ↓↓↓ ピアノモード */
-	for(int i=0; i<8; i++){
-		if(((keyval>>i)&0x1) == 0){
-			keyOnNoteNoWithVovol(FINGER_NNUM_TBL[i],vovol);
-		}
-	}
-	
-	if(keyval == 0xFF){
-		keyOff();
-	}
-	#endif
 }
 

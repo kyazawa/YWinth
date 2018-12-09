@@ -14,10 +14,14 @@
 /* 通信関連 */
 
 /* UARTボーレート：115200bps */
-#define BAUD 115200
+#define BAUD 19200UL
 
 /* 受信バッファ */
-extern char RxBuff[256];
+extern volatile char RxBuff[256];
+extern volatile uint8_t RxBuffWrPt; /* バッファ書き込んだ位置 */
+extern volatile uint8_t RxBuffRdPt; /* バッファ次に読み込む位置 */
+
+extern char RcvStrBuff[256];
 
 /* 受信割り込み⇒とりあえずバッファに入れとく⇒メインループからバッファになんかあれば読む */
 
@@ -25,5 +29,9 @@ void uartInit(void);
 void uartPutc(char a);
 void uartPuts(char * str);
 
+/* UART一文字読み込み */
+char uartGetc();
+/* コマンド文字列のみを取り出し */
+void uartGetCmdStr();
 
 #endif /* COMM_H_ */

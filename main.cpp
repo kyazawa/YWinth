@@ -34,6 +34,12 @@ ISR (TIMER0_COMPA_vect){
 	buttonPressDetect();	/* 3.押下検知 */
 }
 
+/* USART0受信割り込み */
+ISR (USART0_RX_vect){
+	RxBuff[RxBuffWrPt] = UDR0; /* バッファに積む */
+	RxBuffWrPt++;
+}
+
 /* メイン処理 */
 int main(void)
 {
@@ -127,6 +133,10 @@ int main(void)
 		}else{
 			keyOff();
 		}
+		
+		uartGetCmdStr();
+		sprintf(str, "%d\n", data);
+		//uartPuts(str);
 		
 		/* MIDI送信処理 */
 #if 1
