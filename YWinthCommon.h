@@ -27,6 +27,7 @@ using namespace std;
 #include <util/delay.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <util/twi.h>
 #include <avr/pgmspace.h> /* 配列ROM配置に必要 */
 

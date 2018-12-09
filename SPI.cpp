@@ -81,7 +81,7 @@ uint8_t spiRegRead(uint8_t addr){
 	uint8_t data;
 	spiCtrlCs(ENABLE);
 	spiSend( 0b10000000 | addr ); /* RW=1(read) set */
-	spiRead();
+	data = spiRead();
 	spiCtrlCs(DISABLE);
 	return data;
 }

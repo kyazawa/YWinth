@@ -46,6 +46,8 @@ struct tonedata_t {
 	
 };
 
+extern tonedata_t Tone;
+
 const uint8_t TONE_TBL[6][35] PROGMEM = {
 	/* default tone(sine wave) */
 	{
@@ -158,6 +160,8 @@ void toneRegRead(uint8_t * tone_data);
 void toneRegWrite(uint8_t * tone_data);
 
 void toneWrite(tonedata_t * tone);
-void toneRead(tonedata_t * tone);
+void toneRead(uint8_t * tone_data, tonedata_t * tone);
+
+void toneDump(tonedata_t * tone);
 
 #endif /* TONE_H_ */

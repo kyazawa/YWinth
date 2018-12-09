@@ -139,15 +139,17 @@ int main(void)
 		//uartPuts(str);
 		
 		/* MIDI送信処理 */
-#if 1
+#if 1   /* なんかうまくいかない... ハードウェアのデバッグしないといけない気がする */
 		/*息終了⇒ノートオフ */
 		if( (vel<20) ){ 
-			midiNoteOn(0x01, noteNum_old, 1);
+			if(vel_old>20){
+				midiNoteOn(0x01, noteNum_old, 0);
+			}
 		}else
 		if( ((vel_old<20)&&(vel>=20)) ){ /* 息開始でノートオン */
 			midiNoteOn(0x01, noteNum, vel);
 		}else{
-			midiAfterTouch(0x01, vel);
+			//midiAfterTouch(0x01, vel);
 		}
 		
 		//_delay_ms(30);
